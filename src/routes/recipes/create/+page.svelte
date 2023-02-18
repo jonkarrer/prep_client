@@ -8,6 +8,9 @@
 	import BlocksOutlined from '$lib/assets/icons/BlocksOutlined.svelte';
 	import PlusSquareTwoTone from '$lib/assets/icons/PlusSquareTwoTone.svelte';
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
+	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
+	import PlusCircleTwoTone from '$lib/assets/icons/PlusCircleTwoTone.svelte';
+	import CloseCircleTwoTone from '$lib/assets/icons/CloseCircleTwoTone.svelte';
 
 	let title = '';
 </script>
@@ -42,45 +45,102 @@
 			<div class="add_icon"><PlusSquareTwoTone /></div>
 		</div>
 
-		<div class="ingredient_create">
-			<div class="heading">Add Ingredient</div>
+		<div class="ingredient_create_wrapper">
+			<div class="ingredient_create">
+				<div class="heading">Add Ingredient</div>
 
-			<div class="add_icon-filled">
-				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+				<div class="add_icon-filled">
+					<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+				</div>
+
+				<input type="text" class="quantity" placeholder="Quantity" />
+				<input type="text" class="unit" placeholder="Unit of Measure" />
+				<input type="text" class="name" placeholder="Name" />
 			</div>
-
-			<input type="text" class="quantity" placeholder="Quantity" />
-			<input type="text" class="unit" placeholder="Unit of Measure" />
-			<input type="text" class="name" placeholder="Name" />
+			<div class="ingredient_create_buttons">
+				<Button
+					callback={(e) => console.log(e)}
+					text="Commit"
+					icon={PlusCircleTwoTone}
+					width="90px"
+				/>
+				<Button
+					callback={(e) => console.log(e)}
+					text="Erase"
+					icon={CloseCircleTwoTone}
+					width="90px"
+				/>
+			</div>
 		</div>
 	</Paper>
+
 	<Paper>
 		<Headline title="Directions" />
 
-		<div class="direction">
-			<div class="number">01</div>
-			<div class="step">Do a bunch of stuff to make this text really long and cause it to wrap</div>
-			<div class="checkbox">
-				<Checkbox />
+		<div class="directions_wrapper">
+			<div class="direction">
+				<div class="number">01</div>
+				<div class="step">
+					Do a bunch of stuff to make this text really long and cause it to wrap
+				</div>
+				<div class="checkbox">
+					<Checkbox />
+				</div>
 			</div>
-		</div>
-		<div class="direction_add">
-			<div class="next_number">02</div>
-			<div class="text">Add Direction</div>
-			<div class="add_icon"><PlusSquareTwoTone /></div>
-		</div>
-
-		<div class="direction_create">
-			<div class="title_wrapper">
+			<div class="direction_add">
 				<div class="next_number">02</div>
-				<div class="heading">Add Direction</div>
+				<div class="text">Add Direction</div>
+				<div class="add_icon"><PlusSquareTwoTone /></div>
 			</div>
 
-			<div class="add_icon-filled">
-				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
-			</div>
+			<div class="direction_create">
+				<div class="title_wrapper">
+					<div class="next_number">02</div>
+					<div class="heading">Add Direction</div>
+				</div>
 
-			<input type="text" class="name" placeholder="Describe Step" />
+				<div class="add_icon-filled">
+					<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+				</div>
+
+				<input type="text" class="name" placeholder="Describe Step" />
+			</div>
+			<div class="ingredient_create_buttons">
+				<Button
+					callback={(e) => console.log(e)}
+					text="Commit"
+					icon={PlusCircleTwoTone}
+					width="90px"
+				/>
+				<Button
+					callback={(e) => console.log(e)}
+					text="Erase"
+					icon={CloseCircleTwoTone}
+					width="90px"
+				/>
+			</div>
+		</div>
+	</Paper>
+
+	<Paper>
+		<Headline title="Tags" />
+		<div class="tag_wrapper">
+			<Button
+				callback={(e) => console.log(e)}
+				text="Add Tag"
+				icon={PlusOutlined}
+				borderStyles="dashed"
+			/>
+			<div class="tag">Name</div>
+			<div class="tag">Name Long</div>
+			<div class="tag">Name</div>
+			<div class="tag">Name Really</div>
+			<div class="tag">Name</div>
+			<div class="tag">Name</div>
+			<div class="tag">Name Really Long</div>
+			<div class="tag">Name Long</div>
+			<div class="tag">Name</div>
+			<div class="tag">Name</div>
 		</div>
 	</Paper>
 </form>
@@ -89,15 +149,14 @@
 	form {
 		display: grid;
 		gap: 24px;
-		margin: auto var(--gutter-mobile);
+		margin: 20px var(--gutter-mobile);
 	}
 	input {
-		border-radius: var(--border-radius);
-
 		width: 100%;
 		padding: 12px 15px;
 
 		font-size: var(--rg);
+		border-radius: var(--border-radius);
 	}
 
 	input:focus {
@@ -235,5 +294,35 @@
 	.direction_create .title_wrapper {
 		display: flex;
 		gap: 10px;
+	}
+
+	.tag_wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-top: 15px;
+	}
+	.tag {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		min-width: 70px;
+		padding: 6px 9px;
+
+		font-size: var(--sm);
+		color: var(--contrast);
+
+		border: var(--solid-border);
+		border-radius: var(--border-radius);
+	}
+
+	.ingredient_create_buttons {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+
+		margin-top: 15px;
 	}
 </style>

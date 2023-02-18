@@ -6,9 +6,15 @@
 	) => any;
 	export let text: string;
 	export let icon: any;
+	export let borderStyles: string = 'solid';
+	export let width: string = 'auto';
 </script>
 
-<button on:click={(e) => callback(e)}>
+<button
+	style:width
+	style:border={borderStyles === 'solid' ? 'var(--solid-border)' : 'var(--dashed-border)'}
+	on:click={(e) => callback(e)}
+>
 	<div class="text">{text}</div>
 
 	<div class="icon"><svelte:component this={icon} /></div>
