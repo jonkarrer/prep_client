@@ -39,19 +39,48 @@
 		</div>
 		<div class="ingredient_add">
 			<div>Add Ingredient</div>
-			<div class="ingredient_add_icon"><PlusSquareTwoTone /></div>
+			<div class="add_icon"><PlusSquareTwoTone /></div>
 		</div>
 
 		<div class="ingredient_create">
 			<div class="heading">Add Ingredient</div>
 
-			<div class="ingredient_add_icon-filled">
+			<div class="add_icon-filled">
 				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
 			</div>
 
 			<input type="text" class="quantity" placeholder="Quantity" />
 			<input type="text" class="unit" placeholder="Unit of Measure" />
 			<input type="text" class="name" placeholder="Name" />
+		</div>
+	</Paper>
+	<Paper>
+		<Headline title="Directions" />
+
+		<div class="direction">
+			<div class="number">01</div>
+			<div class="step">Do a bunch of stuff to make this text really long and cause it to wrap</div>
+			<div class="checkbox">
+				<Checkbox />
+			</div>
+		</div>
+		<div class="direction_add">
+			<div class="next_number">02</div>
+			<div class="text">Add Direction</div>
+			<div class="add_icon"><PlusSquareTwoTone /></div>
+		</div>
+
+		<div class="direction_create">
+			<div class="title_wrapper">
+				<div class="next_number">02</div>
+				<div class="heading">Add Direction</div>
+			</div>
+
+			<div class="add_icon-filled">
+				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+			</div>
+
+			<input type="text" class="name" placeholder="Describe Step" />
 		</div>
 	</Paper>
 </form>
@@ -67,6 +96,8 @@
 
 		width: 100%;
 		padding: 12px 15px;
+
+		font-size: var(--rg);
 	}
 
 	input:focus {
@@ -106,13 +137,11 @@
 		border: var(--dashed-border);
 		border-radius: 3px;
 	}
-	.ingredient_add_icon {
-		display: flex;
-		align-items: center;
+	.add_icon {
 		height: 16px;
 		width: 16px;
 	}
-	.ingredient_add_icon-filled {
+	.add_icon-filled {
 		align-self: center;
 		justify-self: flex-end;
 		height: 16px;
@@ -123,7 +152,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
-		gap: 9px;
+		gap: 10px;
 
 		margin-top: 15px;
 		padding: 12px 15px;
@@ -145,5 +174,66 @@
 	input.name {
 		border: var(--dashed-border);
 		grid-column: 1 / span 2;
+	}
+
+	.direction {
+		display: grid;
+		grid-template-columns: auto auto 50px;
+		align-items: baseline;
+		gap: 10px;
+
+		margin-top: 15px;
+		padding: 12px 15px;
+
+		border: var(--solid-border);
+		border-radius: 3px;
+	}
+	.direction .step {
+		font-size: var(--rg);
+		color: var(--contrast);
+	}
+	.direction .number {
+		font-size: var(--rg);
+		color: var(--accent);
+		font-weight: bold;
+	}
+	.direction > *:last-child {
+		justify-self: flex-end;
+	}
+	.direction_add {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-top: 15px;
+		padding: 12px 15px;
+
+		font-size: var(--rg);
+		color: var(--darker);
+
+		border: var(--dashed-border);
+		border-radius: 3px;
+	}
+	.direction_add .text {
+		flex: 1;
+	}
+	.next_number {
+		font-weight: 600;
+	}
+
+	.direction_create {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-flow: row;
+		gap: 10px;
+
+		margin-top: 15px;
+		padding: 12px 15px;
+		border: var(--dashed-border);
+		font-size: var(--rg);
+		color: var(--darker);
+	}
+	.direction_create .title_wrapper {
+		display: flex;
+		gap: 10px;
 	}
 </style>
