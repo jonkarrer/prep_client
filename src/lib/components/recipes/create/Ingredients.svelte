@@ -6,6 +6,8 @@
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
 	import PlusCircleTwoTone from '$lib/assets/icons/PlusCircleTwoTone.svelte';
 	import CloseCircleTwoTone from '$lib/assets/icons/CloseCircleTwoTone.svelte';
+
+	let isCreateIngredientOpen = false;
 </script>
 
 <Paper>
@@ -16,24 +18,23 @@
 		<Checkbox />
 	</div>
 
-	<div class="add">
-		<div>Add Ingredient</div>
-		<div class="add_icon"><PlusSquareTwoTone /></div>
-	</div>
-
 	<div class="create_wrapper">
-		<div class="create">
-			<div class="heading">Add Ingredient</div>
+		<button class="create" on:click={() => (isCreateIngredientOpen = !isCreateIngredientOpen)}>
+			<div class="add">
+				<div class="heading">Add Ingredient</div>
 
-			<div class="add_icon--filled">
-				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+				<div class="add_icon">
+					<PlusSquareTwoTone isActive={isCreateIngredientOpen} />
+				</div>
 			</div>
 
-			<input type="text" class="quantity" placeholder="Quantity" />
-			<input type="text" class="unit" placeholder="Unit" />
-			<input type="text" class="name" placeholder="Name" />
-		</div>
-		<div class="create_buttons">
+			<div style:display={isCreateIngredientOpen ? 'grid' : 'none'} class="input_wrapper">
+				<input type="text" class="quantity" placeholder="Quantity" />
+				<input type="text" class="unit" placeholder="Unit" />
+				<input type="text" class="name" placeholder="Name" />
+			</div>
+		</button>
+		<div style:display={isCreateIngredientOpen ? 'flex' : 'none'} class="create_buttons">
 			<Button
 				callback={(e) => console.log(e)}
 				text="Commit"
@@ -70,42 +71,33 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
-		margin-top: 15px;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		color: var(--darker);
-
-		border: var(--dashed-border);
-		border-radius: 3px;
 	}
 	.add_icon {
 		height: 16px;
 		width: 16px;
 	}
-	.add_icon--filled {
-		align-self: center;
-		justify-self: flex-end;
-		height: 16px;
-		width: 16px;
-		margin-bottom: 10px;
-	}
 
 	.create {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		align-items: center;
 		grid-auto-flow: row;
-		gap: 10px;
+		gap: 20px;
 
+		width: 100%;
 		margin-top: 15px;
 		padding: 12px 15px;
-		border: var(--dashed-border);
+
+		text-align: left;
 		font-size: var(--rg);
 		color: var(--darker);
+
+		border: var(--dashed-border);
 	}
-	.create .heading {
-		margin-bottom: 10px;
+
+	.input_wrapper {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
 	}
 
 	input {

@@ -8,7 +8,6 @@
 	bind:value={title}
 	type="text"
 	placeholder="Recipe Name"
-	required
 />
 
 <style>

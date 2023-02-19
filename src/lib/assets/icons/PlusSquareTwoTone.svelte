@@ -1,6 +1,9 @@
-<script>
-	export let bg = '#a5a5a5';
-	export let stroke = '#5a5a5a';
+<script lang="ts">
+	export let isActive = false;
+	$: bg = isActive ? 'var(--accent)' : 'var(--primary)';
+	$: stroke = isActive ? 'var(--contrast)' : 'var(--darker)';
+
+	console.log(isActive);
 </script>
 
 <svg width="100%" height="100%" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">

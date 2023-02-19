@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="add_icon--filled">
-				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
+				<!-- <PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} /> -->
 			</div>
 
 			<input type="text" class="name" placeholder="Describe Step" />

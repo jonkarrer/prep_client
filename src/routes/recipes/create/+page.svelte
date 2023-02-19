@@ -16,7 +16,7 @@
 	<Button callback={(e) => console.log(e)} text="Draft" icon={BlocksOutlined} />
 </Mobile>
 
-<form id="recipe_creation_form" action="POST">
+<div id="recipe_creation_form">
 	<Title />
 
 	<Ingredients />
@@ -24,10 +24,10 @@
 	<Directions />
 
 	<Tags />
-</form>
+</div>
 
 <style>
-	form {
+	div {
 		display: grid;
 		gap: 24px;
 		margin: 20px var(--gutter-mobile);
