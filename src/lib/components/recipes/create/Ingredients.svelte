@@ -15,16 +15,17 @@
 		<div>4, cups, sifted white sugar</div>
 		<Checkbox />
 	</div>
-	<div class="ingredient_add">
+
+	<div class="add">
 		<div>Add Ingredient</div>
 		<div class="add_icon"><PlusSquareTwoTone /></div>
 	</div>
 
-	<div class="ingredient_create_wrapper">
-		<div class="ingredient_create">
+	<div class="create_wrapper">
+		<div class="create">
 			<div class="heading">Add Ingredient</div>
 
-			<div class="add_icon-filled">
+			<div class="add_icon--filled">
 				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
 			</div>
 
@@ -32,7 +33,7 @@
 			<input type="text" class="unit" placeholder="Unit" />
 			<input type="text" class="name" placeholder="Name" />
 		</div>
-		<div class="ingredient_create_buttons">
+		<div class="create_buttons">
 			<Button
 				callback={(e) => console.log(e)}
 				text="Commit"
@@ -64,7 +65,8 @@
 		border: var(--solid-border);
 		border-radius: 3px;
 	}
-	.ingredient_add {
+
+	.add {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -78,7 +80,19 @@
 		border: var(--dashed-border);
 		border-radius: 3px;
 	}
-	.ingredient_create {
+	.add_icon {
+		height: 16px;
+		width: 16px;
+	}
+	.add_icon--filled {
+		align-self: center;
+		justify-self: flex-end;
+		height: 16px;
+		width: 16px;
+		margin-bottom: 10px;
+	}
+
+	.create {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
@@ -90,6 +104,10 @@
 		font-size: var(--rg);
 		color: var(--darker);
 	}
+	.create .heading {
+		margin-bottom: 10px;
+	}
+
 	input {
 		width: 100%;
 		padding: 12px 15px;
@@ -97,16 +115,10 @@
 		font-size: var(--rg);
 		border-radius: var(--border-radius);
 	}
-
 	input:focus {
 		border: var(--solid-border);
 		outline: none;
 	}
-
-	.ingredient_create .heading {
-		margin-bottom: 10px;
-	}
-
 	input.name {
 		border: var(--dashed-border);
 		grid-column: 1 / span 2;
@@ -117,18 +129,8 @@
 	input.unit {
 		border: var(--dashed-border);
 	}
-	.add_icon {
-		height: 16px;
-		width: 16px;
-	}
-	.add_icon-filled {
-		align-self: center;
-		justify-self: flex-end;
-		height: 16px;
-		width: 16px;
-		margin-bottom: 10px;
-	}
-	.ingredient_create_buttons {
+
+	.create_buttons {
 		display: flex;
 		align-items: center;
 		justify-content: center;

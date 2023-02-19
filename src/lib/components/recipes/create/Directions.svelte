@@ -11,33 +11,35 @@
 <Paper>
 	<Headline title="Directions" />
 
-	<div class="directions_wrapper">
-		<div class="direction">
-			<div class="number">01</div>
-			<div class="step">Do a bunch of stuff to make this text really long and cause it to wrap</div>
-			<div class="checkbox">
-				<Checkbox />
-			</div>
+	<div class="direction">
+		<div class="number">01</div>
+		<div class="step">Do a bunch of stuff to make this text really long and cause it to wrap</div>
+		<div class="checkbox">
+			<Checkbox />
 		</div>
-		<div class="direction_add">
-			<div class="next_number">02</div>
-			<div class="text">Add Direction</div>
-			<div class="add_icon"><PlusSquareTwoTone /></div>
-		</div>
+	</div>
 
-		<div class="direction_create">
+	<div class="add">
+		<div class="next_number">02</div>
+		<div class="text">Add Direction</div>
+		<div class="add_icon"><PlusSquareTwoTone /></div>
+	</div>
+
+	<div class="create_wrapper">
+		<div class="create">
 			<div class="title_wrapper">
 				<div class="next_number">02</div>
 				<div class="heading">Add Direction</div>
 			</div>
 
-			<div class="add_icon-filled">
+			<div class="add_icon--filled">
 				<PlusSquareTwoTone bg={'var(--accent)'} stroke={'var(--contrast)'} />
 			</div>
 
 			<input type="text" class="name" placeholder="Describe Step" />
 		</div>
-		<div class="ingredient_create_buttons">
+
+		<div class="create_buttons">
 			<Button
 				callback={(e) => console.log(e)}
 				text="Commit"
@@ -55,21 +57,24 @@
 </Paper>
 
 <style>
-	.add_icon {
-		height: 16px;
-		width: 16px;
-	}
-	.add_icon-filled {
-		align-self: center;
-		justify-self: flex-end;
-		height: 16px;
-		width: 16px;
-		margin-bottom: 10px;
+	input {
+		width: 100%;
+		padding: 12px 15px;
+
+		font-size: var(--rg);
+		border-radius: var(--border-radius);
 	}
 
+	input:focus {
+		border: var(--solid-border);
+		outline: none;
+	}
 	input.name {
 		border: var(--dashed-border);
 		grid-column: 1 / span 2;
+	}
+	.next_number {
+		font-weight: 600;
 	}
 
 	.direction {
@@ -96,7 +101,8 @@
 	.direction > *:last-child {
 		justify-self: flex-end;
 	}
-	.direction_add {
+
+	.add {
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -109,26 +115,22 @@
 		border: var(--dashed-border);
 		border-radius: 3px;
 	}
-	.direction_add .text {
+	.add .text {
 		flex: 1;
 	}
-	.next_number {
-		font-weight: 600;
+	.add_icon {
+		height: 16px;
+		width: 16px;
 	}
-	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-	}
-
-	input:focus {
-		border: var(--solid-border);
-		outline: none;
+	.add_icon--filled {
+		align-self: center;
+		justify-self: flex-end;
+		height: 16px;
+		width: 16px;
+		margin-bottom: 10px;
 	}
 
-	.direction_create {
+	.create {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
@@ -140,11 +142,11 @@
 		font-size: var(--rg);
 		color: var(--darker);
 	}
-	.direction_create .title_wrapper {
+	.create .title_wrapper {
 		display: flex;
 		gap: 10px;
 	}
-	.ingredient_create_buttons {
+	.create_buttons {
 		display: flex;
 		align-items: center;
 		justify-content: center;
