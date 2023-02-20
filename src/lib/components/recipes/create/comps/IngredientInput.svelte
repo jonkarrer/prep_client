@@ -11,6 +11,11 @@
 	let isActive = false;
 	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
 
+	// Bind to html elements for validation
+	let quantityInputElement: HTMLInputElement;
+	let unitInputElement: HTMLInputElement;
+	let nameInputElement: HTMLDivElement;
+
 	function resetInputs() {
 		// Reset ingredient data
 		const blankIngredient: Ingredient = { id: '', name: '', unit: '', quantity: '' };
@@ -20,7 +25,53 @@
 		isActive = false;
 	}
 
+	function areInputsValid(): boolean {
+		// Regular expression to match a number or a fraction
+		const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
+
+		let unitOfMeasure =
+			/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|cups|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice))+\s*)$/gi;
+
+		if (
+			!$recipeDraft[RecipeDraftKeys.INGREDIENT].quantity.length ||
+			!numberFractionRegex.test($recipeDraft[RecipeDraftKeys.INGREDIENT].quantity)
+		) {
+			console.log('invalid quantity');
+
+			quantityInputElement.style.borderColor = 'var(--accent)';
+			quantityInputElement.focus();
+			return false;
+		} else {
+			quantityInputElement.style.borderColor = 'var(--darker)';
+		}
+		if (
+			$recipeDraft[RecipeDraftKeys.INGREDIENT].unit.length === 0 ||
+			!unitOfMeasure.test($recipeDraft[RecipeDraftKeys.INGREDIENT].unit)
+		) {
+			console.log('invalid unit');
+
+			unitInputElement.style.borderColor = 'var(--accent)';
+			unitInputElement.focus();
+			return false;
+		} else {
+			unitInputElement.style.borderColor = 'var(--darker)';
+		}
+
+		if ($recipeDraft[RecipeDraftKeys.INGREDIENT].name.length === 0) {
+			nameInputElement.style.borderColor = 'var(--accent)';
+			nameInputElement.focus();
+			return false;
+		} else {
+			nameInputElement.style.borderColor = 'var(--darker)';
+		}
+		return true;
+	}
+
 	function insertIngredient() {
+		if (!areInputsValid()) {
+			console.log('Recipe Not inserted');
+			return;
+		}
 		const newIngredient = { ...$recipeDraft[RecipeDraftKeys.INGREDIENT], id: nanoid(10) };
 		// ! Need to use spread syntax to trigger a state update
 		$recipeDraft[RecipeDraftKeys.INGREDIENTLIST] = [
@@ -46,6 +97,7 @@
 			class="quantity"
 			type="text"
 			placeholder="Quantity"
+			bind:this={quantityInputElement}
 			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].quantity}
 			on:click={(e) => {
 				e.stopPropagation();
@@ -56,6 +108,7 @@
 			class="unit"
 			type="text"
 			placeholder="Unit"
+			bind:this={unitInputElement}
 			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].unit}
 			on:click={(e) => {
 				e.stopPropagation();
@@ -66,6 +119,7 @@
 			class="name"
 			type="text"
 			placeholder="Name"
+			bind:this={nameInputElement}
 			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].name}
 			on:click={(e) => {
 				e.stopPropagation();
