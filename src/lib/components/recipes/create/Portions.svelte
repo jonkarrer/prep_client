@@ -1,0 +1,88 @@
+<script lang="ts">
+	import Paper from '$lib/components/common/Paper.svelte';
+	import Headline from '$lib/components/common/Headline.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
+
+	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+</script>
+
+<Paper>
+	<Headline title="Portions" />
+	<div class:active={$recipeDraft[RecipeDraftKeys.PORTIONS] > 0}>
+		{$recipeDraft[RecipeDraftKeys.PORTIONS].toLocaleString('en-US', {
+			minimumIntegerDigits: 2,
+			useGrouping: false
+		})}
+	</div>
+
+	<input
+		type="range"
+		min="0"
+		max="60"
+		bind:value={$recipeDraft[RecipeDraftKeys.PORTIONS]}
+		class="slider"
+		id="myRange"
+	/>
+</Paper>
+
+<style>
+	div {
+		width: 100%;
+		margin-top: 15px;
+		padding: 12px 15px;
+
+		text-align: center;
+		font-size: var(--xl);
+		color: var(--darker);
+
+		border: var(--dashed-border);
+		border-radius: var(--border-radius);
+	}
+	.active {
+		color: var(--contrast);
+		border: var(--solid-border);
+	}
+	.slider {
+		margin-top: 24px;
+
+		-webkit-appearance: none;
+		width: 100%;
+		height: 16px;
+		background: rgba(90, 90, 90, 0.2);
+		outline: none;
+		opacity: 0.7;
+		-webkit-transition: 0.2s;
+		transition: opacity 0.2s;
+		border-radius: var(--border-radius);
+	}
+
+	.slider:hover {
+		opacity: 1;
+	}
+
+	.slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 30px;
+		height: 35px;
+		background: var(--contrast);
+		box-shadow: none;
+		border: var(--solid-border);
+		border-radius: var(--border-radius);
+
+		cursor: pointer;
+	}
+
+	.slider::-moz-range-thumb {
+		width: 30px;
+		height: 35px;
+		background: var(--contrast);
+		border: var(--solid-border);
+		border-radius: var(--border-radius);
+		box-shadow: none;
+
+		cursor: pointer;
+	}
+</style>

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Button from '$lib/components/common/Button.svelte';
 	import Paper from '$lib/components/common/Paper.svelte';
 	import Headline from '$lib/components/common/Headline.svelte';
-	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
 	import TagPreview from './comps/TagPreview.svelte';
+	import TagInput from './comps/TagInput.svelte';
 	// import { getContext } from 'svelte';
 	// import type { Writable } from 'svelte/store';
 	// import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
@@ -31,15 +30,11 @@
 	<Headline title="Tags" />
 
 	<div class="tags_wrapper">
-		<Button
-			callback={(e) => console.log(e)}
-			text="Add Tag"
-			icon={PlusOutlined}
-			borderStyles="dashed"
-		/>
 		{#each tempTags as tag}
 			<TagPreview {tag} />
 		{/each}
+
+		<TagInput />
 	</div>
 </Paper>
 
