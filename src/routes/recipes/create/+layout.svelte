@@ -7,21 +7,7 @@
 	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
-	import type { Recipe, RecipeDraft } from '$lib/types/Recipe';
-
-	const recipeDraft: RecipeDraft = {
-		title: '',
-		portions: 0,
-		ingredient: { id: '', name: '', unit: '', quantity: '' },
-		ingredientList: [],
-		direction: '',
-		directionList: [],
-		tag: '',
-		tagList: []
-	};
-
-	let draftStore: Writable<RecipeDraft> = writable(recipeDraft);
-	setContext<Writable<RecipeDraft>>('recipeDraft', draftStore);
+	import type { Recipe } from '$lib/types/Recipe';
 
 	const recipe: Recipe = {
 		title: '',
@@ -30,43 +16,30 @@
 		directions: [],
 		ingredients: []
 	};
-
 	let recipeStore: Writable<Recipe> = writable(recipe);
-
 	setContext<Writable<Recipe>>('recipe', recipeStore);
 
 	$: console.log($recipeStore);
 
 	function saveRecipe() {
-		let recipe: Recipe = {
-			title: $draftStore.title,
-			portions: $draftStore.portions,
-			ingredients: $draftStore.ingredientList,
-			directions: $draftStore.directionList,
-			tags: $draftStore.tagList
-		};
-
-		console.log('FINAL RECIPE', recipe);
+		console.log('FINAL RECIPE', $recipeStore);
 	}
 
 	function saveDraft() {
-		console.log('CURRENT DRAFT', $draftStore);
+		console.log('CURRENT DRAFT', $recipeStore);
 	}
 
 	function resetAllValues() {
-		const blankRecipeDraft: RecipeDraft = {
+		const blankRecipe: Recipe = {
 			title: '',
 			portions: 0,
-			ingredient: { id: '', name: '', unit: '', quantity: '' },
-			ingredientList: [],
-			direction: '',
-			directionList: [],
-			tag: '',
-			tagList: []
+			tags: [],
+			directions: [],
+			ingredients: []
 		};
-		draftStore.set(blankRecipeDraft);
+		recipeStore.set(blankRecipe);
 
-		console.log('RESET ALL', $draftStore);
+		console.log('RESET ALL', $recipeStore);
 	}
 </script>
 

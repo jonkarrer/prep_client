@@ -3,15 +3,15 @@
 	import Headline from '$lib/components/common/Headline.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
+	import { RecipeKeys, type Recipe } from '$lib/types/Recipe';
 
-	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 </script>
 
 <Paper>
 	<Headline title="Portions" />
-	<div class:active={$recipeDraft[RecipeDraftKeys.PORTIONS] > 0}>
-		{$recipeDraft[RecipeDraftKeys.PORTIONS].toLocaleString('en-US', {
+	<div class:active={$recipe[RecipeKeys.PORTIONS] > 0}>
+		{$recipe[RecipeKeys.PORTIONS].toLocaleString('en-US', {
 			minimumIntegerDigits: 2,
 			useGrouping: false
 		})}
@@ -21,7 +21,7 @@
 		type="range"
 		min="0"
 		max="60"
-		bind:value={$recipeDraft[RecipeDraftKeys.PORTIONS]}
+		bind:value={$recipe[RecipeKeys.PORTIONS]}
 		class="slider"
 		id="myRange"
 	/>

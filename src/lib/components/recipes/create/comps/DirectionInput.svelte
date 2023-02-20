@@ -5,24 +5,23 @@
 	import PlusSquareTwoTone from '$lib/assets/icons/PlusSquareTwoTone.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
+	import { RecipeKeys, type Recipe } from '$lib/types/Recipe';
 
 	export let nextOrder: number;
 
 	let isActive = false;
-	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
+
+	let directionValueBinding = '';
 
 	function resetInputs() {
-		$recipeDraft[RecipeDraftKeys.DIRECTION] = '';
+		directionValueBinding = '';
 		isActive = false;
 	}
 
 	function insertDirection() {
 		// ! Need to use spread syntax to trigger a state update
-		$recipeDraft[RecipeDraftKeys.DIRECTIONLIST] = [
-			...$recipeDraft[RecipeDraftKeys.DIRECTIONLIST],
-			$recipeDraft[RecipeDraftKeys.DIRECTION]
-		];
+		$recipe[RecipeKeys.DIRECTIONS] = [...$recipe[RecipeKeys.DIRECTIONS], directionValueBinding];
 
 		resetInputs();
 	}
@@ -44,7 +43,7 @@
 		class="name"
 		type="text"
 		placeholder="Describe Step"
-		bind:value={$recipeDraft[RecipeDraftKeys.DIRECTION]}
+		bind:value={directionValueBinding}
 		on:click={(e) => {
 			e.stopPropagation();
 		}}

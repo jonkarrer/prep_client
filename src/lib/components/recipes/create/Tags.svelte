@@ -3,11 +3,6 @@
 	import Headline from '$lib/components/common/Headline.svelte';
 	import TagPreview from './comps/TagPreview.svelte';
 	import TagInput from './comps/TagInput.svelte';
-	// import { getContext } from 'svelte';
-	// import type { Writable } from 'svelte/store';
-	// import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
-
-	// const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
 
 	const tempTags = [
 		'Gluten Free',

@@ -5,18 +5,18 @@
 	import DirectionInput from './comps/DirectionInput.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
+	import { RecipeKeys, type Recipe } from '$lib/types/Recipe';
 
-	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 </script>
 
 <Paper>
 	<Headline title="Directions" />
-	{#each $recipeDraft[RecipeDraftKeys.DIRECTIONLIST] as item, i}
+	{#each $recipe[RecipeKeys.DIRECTIONS] as item, i}
 		<DirectionPreview direction={item} order={i} />
 	{/each}
 
-	<DirectionInput nextOrder={$recipeDraft[RecipeDraftKeys.DIRECTIONLIST].length + 1} />
+	<DirectionInput nextOrder={$recipe[RecipeKeys.DIRECTIONS].length + 1} />
 </Paper>
 
 <style>

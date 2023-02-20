@@ -3,27 +3,8 @@
 	import PlusCircleTwoTone from '$lib/assets/icons/PlusCircleTwoTone.svelte';
 	import CloseCircleTwoTone from '$lib/assets/icons/CloseCircleTwoTone.svelte';
 	import PlusSquareTwoTone from '$lib/assets/icons/PlusSquareTwoTone.svelte';
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
-	// import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
 
 	let isActive = false;
-	// const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
-
-	// function resetInputs() {
-	// 	$recipeDraft[RecipeDraftKeys.DIRECTION] = '';
-	// 	isActive = false;
-	// }
-
-	// function insertDirection() {
-	// 	// ! Need to use spread syntax to trigger a state update
-	// 	$recipeDraft[RecipeDraftKeys.DIRECTIONLIST] = [
-	// 		...$recipeDraft[RecipeDraftKeys.DIRECTIONLIST],
-	// 		$recipeDraft[RecipeDraftKeys.DIRECTION]
-	// 	];
-
-	// 	resetInputs();
-	// }
 </script>
 
 <button class="root" on:click={() => (isActive = !isActive)}>
