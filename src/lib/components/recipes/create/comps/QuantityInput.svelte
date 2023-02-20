@@ -1,4 +1,8 @@
 <script lang="ts">
+	export let quantityValueBinding: string;
+	export let quantityElementBinding: HTMLInputElement;
+	let valid = false;
+
 	function areInputsValid(): boolean {
 		// Regular expression to match a number or a fraction
 		const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
@@ -6,14 +10,9 @@
 		if (!quantityValueBinding.length || !numberFractionRegex.test(quantityValueBinding)) {
 			console.log('invalid quantity');
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
-
-	export let quantityValueBinding: string;
-	export let quantityElementBinding: HTMLInputElement;
-	let valid = false;
 
 	$: if (areInputsValid()) {
 		valid = true;

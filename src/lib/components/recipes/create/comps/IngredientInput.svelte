@@ -8,6 +8,7 @@
 	import type { Writable } from 'svelte/store';
 	import { RecipeDraftKeys, type Ingredient, type RecipeDraft } from '$lib/types/Recipe';
 	import QuantityInput from './QuantityInput.svelte';
+	import UnitInput from './UnitInput.svelte';
 
 	let isActive = false;
 	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
@@ -30,24 +31,9 @@
 	}
 
 	function areInputsValid(): boolean {
-		// Regular expression to match a number or a fraction
-		const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
-
 		let unitOfMeasure =
 			/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|cups|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice))+\s*)$/gi;
 
-		if (
-			!$recipeDraft[RecipeDraftKeys.INGREDIENT].quantity.length ||
-			!numberFractionRegex.test($recipeDraft[RecipeDraftKeys.INGREDIENT].quantity)
-		) {
-			console.log('invalid quantity');
-
-			quantityInputElement.style.borderColor = 'var(--accent)';
-			quantityInputElement.focus();
-			return false;
-		} else {
-			quantityInputElement.style.borderColor = 'var(--darker)';
-		}
 		if (
 			$recipeDraft[RecipeDraftKeys.INGREDIENT].unit.length === 0 ||
 			!unitOfMeasure.test($recipeDraft[RecipeDraftKeys.INGREDIENT].unit)
@@ -101,17 +87,8 @@
 			quantityValueBinding={workingIngredient.quantity}
 			quantityElementBinding={quantityInputElement}
 		/>
-		<input
-			class="unit"
-			type="text"
-			placeholder="Unit"
-			bind:this={unitInputElement}
-			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].unit}
-			on:click={(e) => {
-				e.stopPropagation();
-			}}
-			on:keyup={(e) => e.preventDefault()}
-		/>
+		<UnitInput unitValueBinding={workingIngredient.unit} unitElementBinding={unitInputElement} />
+
 		<input
 			class="name"
 			type="text"
@@ -179,9 +156,6 @@
 	input.name {
 		border: var(--dashed-border);
 		grid-column: 1 / span 2;
-	}
-	input.unit {
-		border: var(--dashed-border);
 	}
 
 	.action_buttons {
