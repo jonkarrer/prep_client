@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
+	export let name: string;
+	export let quantity: string;
+	export let unit: string;
 </script>
 
 <div class="ingredient">
-	<div>4, cups, sifted white sugar</div>
+	<div>{quantity}, {unit}, {name}</div>
 	<Checkbox />
 </div>
 

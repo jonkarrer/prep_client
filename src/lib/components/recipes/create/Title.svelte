@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { RecipeKeys, type Recipe } from '$lib/types/Recipe';
+	import { RecipeDraftKeys, type RecipeDraft } from '$lib/types/Recipe';
 
-	const recipeData: Writable<Recipe> = getContext<Writable<Recipe>>('recipeData');
+	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
 </script>
 
 <input
 	class="title"
-	style:border={$recipeData[RecipeKeys.TITLE].length === 0
+	style:border={$recipeDraft[RecipeDraftKeys.TITLE].length === 0
 		? 'var(--dashed-border)'
 		: 'var(--solid-border)'}
-	bind:value={$recipeData[RecipeKeys.TITLE]}
+	bind:value={$recipeDraft[RecipeDraftKeys.TITLE]}
 	type="text"
 	placeholder="Recipe Name"
 />
