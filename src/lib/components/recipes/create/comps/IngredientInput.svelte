@@ -96,6 +96,7 @@
 		color: var(--darker);
 
 		border: var(--dashed-border);
+		border-radius: var(--border-radius);
 	}
 
 	.title {
