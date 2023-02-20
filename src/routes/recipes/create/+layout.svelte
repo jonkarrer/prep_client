@@ -23,7 +23,19 @@
 	let draftStore: Writable<RecipeDraft> = writable(recipeDraft);
 	setContext<Writable<RecipeDraft>>('recipeDraft', draftStore);
 
-	$: console.log($draftStore);
+	const recipe: Recipe = {
+		title: '',
+		portions: 0,
+		tags: [],
+		directions: [],
+		ingredients: []
+	};
+
+	let recipeStore: Writable<Recipe> = writable(recipe);
+
+	setContext<Writable<Recipe>>('recipe', recipeStore);
+
+	$: console.log($recipeStore);
 
 	function saveRecipe() {
 		let recipe: Recipe = {

@@ -6,14 +6,14 @@
 	import CloseCircleTwoTone from '$lib/assets/icons/CloseCircleTwoTone.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { RecipeDraftKeys, type Ingredient, type RecipeDraft } from '$lib/types/Recipe';
+	import { RecipeKeys, type Ingredient, type Recipe } from '$lib/types/Recipe';
 	import QuantityInput from './QuantityInput.svelte';
 	import UnitInput from './UnitInput.svelte';
 	import NameInput from './NameInput.svelte';
 
 	let isActive = false;
 	let allInputsAreValid = false;
-	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 
 	// Bind values for insertion into ingredient
 	let quantityInputValue = '';
@@ -30,7 +30,7 @@
 	let unitInputElement: HTMLInputElement;
 	let nameInputElement: HTMLInputElement;
 
-	function resetInputs() {
+	function resetInputs(): void {
 		// Reset ingredient data
 		quantityInputValue = '';
 		unitInputValue = '';
@@ -48,7 +48,7 @@
 		})();
 	}
 
-	function handleValidationFail() {
+	function handleValidationFail(): void {
 		if (!quantityValidState) {
 			quantityInputElement.focus();
 			return;
@@ -63,7 +63,7 @@
 		}
 	}
 
-	function insertIngredient() {
+	function insertIngredient(): void {
 		// Deactivate the dropdown
 		// isActive = false;
 		if (!allInputsAreValid) {
@@ -71,20 +71,17 @@
 			return;
 		}
 
-		console.log('All Inputs Valid');
+		const newIngredient: Ingredient = {
+			id: nanoid(10),
+			name: nameInputValue,
+			quantity: quantityInputValue,
+			unit: unitInputValue
+		};
 
-		// if (!areInputsValid()) {
-		// 	console.log('Recipe Not inserted');
-		// 	return;
-		// }
-		// const newIngredient = { ...$recipeDraft[RecipeDraftKeys.INGREDIENT], id: nanoid(10) };
-		// // ! Need to use spread syntax to trigger a state update
-		// $recipeDraft[RecipeDraftKeys.INGREDIENTLIST] = [
-		// 	...$recipeDraft[RecipeDraftKeys.INGREDIENTLIST],
-		// 	newIngredient
-		// ];
+		// ! Need to use spread syntax to trigger a state update
+		$recipe[RecipeKeys.INGREDIENTS] = [...$recipe[RecipeKeys.INGREDIENTS], newIngredient];
 
-		// resetInputs();
+		resetInputs();
 	}
 </script>
 
