@@ -7,9 +7,13 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { RecipeDraftKeys, type Ingredient, type RecipeDraft } from '$lib/types/Recipe';
+	import QuantityInput from './QuantityInput.svelte';
 
 	let isActive = false;
 	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
+	const workingIngredient: Ingredient = { id: '', name: '', unit: '', quantity: '' };
+
+	$: console.log(workingIngredient);
 
 	// Bind to html elements for validation
 	let quantityInputElement: HTMLInputElement;
@@ -93,16 +97,9 @@
 	</div>
 
 	<div style:display={isActive ? 'grid' : 'none'} class="input_wrapper">
-		<input
-			class="quantity"
-			type="text"
-			placeholder="Quantity"
-			bind:this={quantityInputElement}
-			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].quantity}
-			on:click={(e) => {
-				e.stopPropagation();
-			}}
-			on:keyup={(e) => e.preventDefault()}
+		<QuantityInput
+			quantityValueBinding={workingIngredient.quantity}
+			quantityElementBinding={quantityInputElement}
 		/>
 		<input
 			class="unit"
@@ -182,9 +179,6 @@
 	input.name {
 		border: var(--dashed-border);
 		grid-column: 1 / span 2;
-	}
-	input.quantity {
-		border: var(--dashed-border);
 	}
 	input.unit {
 		border: var(--dashed-border);
