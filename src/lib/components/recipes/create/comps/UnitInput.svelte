@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let unitValueBinding: string;
 	export let unitElementBinding: HTMLInputElement;
-	let valid = false;
+	export let valid: boolean;
 
 	function areInputsValid(): boolean {
 		let unitOfMeasure =

@@ -1,14 +1,10 @@
 <script lang="ts">
-	export let quantityValueBinding: string;
-	export let quantityElementBinding: HTMLInputElement;
+	export let nameValueBinding: string;
+	export let nameElementBinding: HTMLInputElement;
 	export let valid: boolean;
 
 	function areInputsValid(): boolean {
-		// Regular expression to match a number or a fraction
-		const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
-
-		if (!quantityValueBinding.length || !numberFractionRegex.test(quantityValueBinding)) {
-			console.log('invalid quantity');
+		if (nameValueBinding.length < 2) {
 			return false;
 		}
 		return true;
@@ -16,7 +12,7 @@
 
 	$: if (areInputsValid()) {
 		valid = true;
-		console.log(quantityValueBinding);
+		console.log(nameValueBinding);
 	} else {
 		valid = false;
 	}
@@ -24,10 +20,10 @@
 
 <input
 	type="text"
-	placeholder="Quantity"
+	placeholder="Name"
 	class:valid
-	bind:this={quantityElementBinding}
-	bind:value={quantityValueBinding}
+	bind:this={nameElementBinding}
+	bind:value={nameValueBinding}
 	on:click={(e) => {
 		e.stopPropagation();
 	}}
@@ -41,11 +37,14 @@
 
 		font-size: var(--rg);
 		border-radius: var(--border-radius);
+
 		border: var(--dashed-border);
+		grid-column: 1 / span 2;
 	}
 	input:focus {
 		outline: none;
 	}
+
 	.valid {
 		border: var(--solid-border);
 	}

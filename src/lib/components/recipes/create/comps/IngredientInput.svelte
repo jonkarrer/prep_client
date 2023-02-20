@@ -9,71 +9,86 @@
 	import { RecipeDraftKeys, type Ingredient, type RecipeDraft } from '$lib/types/Recipe';
 	import QuantityInput from './QuantityInput.svelte';
 	import UnitInput from './UnitInput.svelte';
+	import NameInput from './NameInput.svelte';
 
 	let isActive = false;
+	let allInputsAreValid = false;
 	const recipeDraft: Writable<RecipeDraft> = getContext<Writable<RecipeDraft>>('recipeDraft');
-	const workingIngredient: Ingredient = { id: '', name: '', unit: '', quantity: '' };
 
-	$: console.log(workingIngredient);
+	// Bind values for insertion into ingredient
+	let quantityInputValue = '';
+	let unitInputValue = '';
+	let nameInputValue = '';
+
+	// Bind Validity
+	let quantityValidState = false;
+	let unitValidState = false;
+	let nameValidState = false;
 
 	// Bind to html elements for validation
 	let quantityInputElement: HTMLInputElement;
 	let unitInputElement: HTMLInputElement;
-	let nameInputElement: HTMLDivElement;
+	let nameInputElement: HTMLInputElement;
 
 	function resetInputs() {
 		// Reset ingredient data
-		const blankIngredient: Ingredient = { id: '', name: '', unit: '', quantity: '' };
-		$recipeDraft[RecipeDraftKeys.INGREDIENT] = blankIngredient;
-
-		// Deactivate the dropdown
-		isActive = false;
+		quantityInputValue = '';
+		unitInputValue = '';
+		nameInputValue = '';
 	}
 
-	function areInputsValid(): boolean {
-		let unitOfMeasure =
-			/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|cups|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice))+\s*)$/gi;
+	$: {
+		(function areInputsValid(): void {
+			if (!quantityValidState || !unitValidState || !nameValidState) {
+				console.log('All Inputs Not Valid');
+				allInputsAreValid = false;
+			} else {
+				allInputsAreValid = true;
+			}
+		})();
+	}
 
-		if (
-			$recipeDraft[RecipeDraftKeys.INGREDIENT].unit.length === 0 ||
-			!unitOfMeasure.test($recipeDraft[RecipeDraftKeys.INGREDIENT].unit)
-		) {
-			console.log('invalid unit');
-
-			unitInputElement.style.borderColor = 'var(--accent)';
+	function handleValidationFail() {
+		if (!quantityValidState) {
+			quantityInputElement.focus();
+			return;
+		}
+		if (!unitValidState) {
 			unitInputElement.focus();
-			return false;
-		} else {
-			unitInputElement.style.borderColor = 'var(--darker)';
+			return;
 		}
-
-		if ($recipeDraft[RecipeDraftKeys.INGREDIENT].name.length === 0) {
-			nameInputElement.style.borderColor = 'var(--accent)';
+		if (!nameValidState) {
 			nameInputElement.focus();
-			return false;
-		} else {
-			nameInputElement.style.borderColor = 'var(--darker)';
+			return;
 		}
-		return true;
 	}
 
 	function insertIngredient() {
-		if (!areInputsValid()) {
-			console.log('Recipe Not inserted');
+		// Deactivate the dropdown
+		// isActive = false;
+		if (!allInputsAreValid) {
+			handleValidationFail();
 			return;
 		}
-		const newIngredient = { ...$recipeDraft[RecipeDraftKeys.INGREDIENT], id: nanoid(10) };
-		// ! Need to use spread syntax to trigger a state update
-		$recipeDraft[RecipeDraftKeys.INGREDIENTLIST] = [
-			...$recipeDraft[RecipeDraftKeys.INGREDIENTLIST],
-			newIngredient
-		];
 
-		resetInputs();
+		console.log('All Inputs Valid');
+
+		// if (!areInputsValid()) {
+		// 	console.log('Recipe Not inserted');
+		// 	return;
+		// }
+		// const newIngredient = { ...$recipeDraft[RecipeDraftKeys.INGREDIENT], id: nanoid(10) };
+		// // ! Need to use spread syntax to trigger a state update
+		// $recipeDraft[RecipeDraftKeys.INGREDIENTLIST] = [
+		// 	...$recipeDraft[RecipeDraftKeys.INGREDIENTLIST],
+		// 	newIngredient
+		// ];
+
+		// resetInputs();
 	}
 </script>
 
-<button class="root" on:click={() => (isActive = !isActive)}>
+<button class:allInputsAreValid on:click={() => (isActive = !isActive)}>
 	<div class="title">
 		<div>Add Ingredient</div>
 
@@ -84,32 +99,31 @@
 
 	<div style:display={isActive ? 'grid' : 'none'} class="input_wrapper">
 		<QuantityInput
-			quantityValueBinding={workingIngredient.quantity}
-			quantityElementBinding={quantityInputElement}
+			bind:quantityValueBinding={quantityInputValue}
+			bind:quantityElementBinding={quantityInputElement}
+			bind:valid={quantityValidState}
 		/>
-		<UnitInput unitValueBinding={workingIngredient.unit} unitElementBinding={unitInputElement} />
 
-		<input
-			class="name"
-			type="text"
-			placeholder="Name"
-			bind:this={nameInputElement}
-			bind:value={$recipeDraft[RecipeDraftKeys.INGREDIENT].name}
-			on:click={(e) => {
-				e.stopPropagation();
-			}}
-			on:keyup={(e) => e.preventDefault()}
+		<UnitInput
+			bind:unitValueBinding={unitInputValue}
+			bind:unitElementBinding={unitInputElement}
+			bind:valid={unitValidState}
+		/>
+		<NameInput
+			bind:nameValueBinding={nameInputValue}
+			bind:nameElementBinding={nameInputElement}
+			bind:valid={nameValidState}
 		/>
 	</div>
 </button>
 
 <div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
 	<Button callback={insertIngredient} text="Commit" icon={PlusCircleTwoTone} width="90px" />
-	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
+	<Button callback={resetInputs} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
 <style>
-	.root {
+	button {
 		display: grid;
 		align-items: center;
 		grid-auto-flow: row;
@@ -142,21 +156,6 @@
 		grid-template-columns: repeat(2, 1fr);
 		gap: 10px;
 	}
-	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-	}
-	input:focus {
-		border: var(--solid-border);
-		outline: none;
-	}
-	input.name {
-		border: var(--dashed-border);
-		grid-column: 1 / span 2;
-	}
 
 	.action_buttons {
 		display: flex;
@@ -165,5 +164,9 @@
 		gap: 10px;
 
 		margin-top: 15px;
+	}
+	.allInputsAreValid {
+		border: var(--solid-border);
+		color: var(--contrast);
 	}
 </style>
