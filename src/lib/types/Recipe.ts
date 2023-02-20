@@ -27,7 +27,7 @@ export type Recipe = {
 	title: string;
 	portions: number;
 	ingredients: Array<Ingredient>;
-	directions: Array<ListItem>;
+	directions: Array<string>;
 	tags: Array<string>;
 };
 
@@ -39,6 +39,6 @@ export type RecipeDraft = {
 	ingredientList: Array<Ingredient>;
 	direction: '';
 	tag: '';
-	directionList: Array<ListItem>;
+	directionList: Array<string>;
 	tagList: Array<string>;
 };

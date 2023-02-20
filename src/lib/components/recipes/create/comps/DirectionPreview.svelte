@@ -1,10 +1,15 @@
-<script>
+<script lang="ts">
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
+
+	export let direction: string;
+	export let order: number;
 </script>
 
 <div class="direction">
-	<div class="number">01</div>
-	<div class="step">Do a bunch of stuff to make this text really long and cause it to wrap</div>
+	<div class="number">
+		{(order + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
+	</div>
+	<div class="text">{direction}</div>
 	<div class="checkbox">
 		<Checkbox />
 	</div>
@@ -13,7 +18,7 @@
 <style>
 	.direction {
 		display: grid;
-		grid-template-columns: auto auto 50px;
+		grid-template-columns: 20px auto 50px;
 		align-items: baseline;
 		gap: 10px;
 
@@ -23,11 +28,11 @@
 		border: var(--solid-border);
 		border-radius: 3px;
 	}
-	.direction .step {
+	.text {
 		font-size: var(--rg);
 		color: var(--contrast);
 	}
-	.direction .number {
+	.number {
 		font-size: var(--rg);
 		color: var(--accent);
 		font-weight: bold;
