@@ -64,8 +64,6 @@
 	}
 
 	function insertIngredient(): void {
-		// Deactivate the dropdown
-		// isActive = false;
 		if (!allInputsAreValid) {
 			handleValidationFail();
 			return;
@@ -82,6 +80,7 @@
 		$recipe[RecipeKeys.INGREDIENTS] = [...$recipe[RecipeKeys.INGREDIENTS], newIngredient];
 
 		resetInputs();
+		isActive = false;
 	}
 </script>
 

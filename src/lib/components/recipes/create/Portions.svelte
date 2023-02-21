@@ -35,13 +35,14 @@
 
 		text-align: center;
 		font-size: var(--xl);
+		font-weight: 600;
 		color: var(--darker);
 
 		border: var(--dashed-border);
 		border-radius: var(--border-radius);
 	}
 	.active {
-		color: var(--contrast);
+		color: var(--accent);
 		border: var(--solid-border);
 	}
 	.slider {

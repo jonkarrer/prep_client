@@ -4,7 +4,7 @@
 	import TagPreview from './comps/TagPreview.svelte';
 	import TagInput from './comps/TagInput.svelte';
 
-	const tempTags = [
+	$: tempTags = [
 		'Gluten Free',
 		'Vegan',
 		'High Protein',
@@ -29,7 +29,7 @@
 			<TagPreview {tag} />
 		{/each}
 
-		<TagInput />
+		<TagInput bind:tempTags />
 	</div>
 </Paper>
 

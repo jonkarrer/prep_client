@@ -10,11 +10,15 @@
 	export let nextOrder: number;
 
 	let isActive = false;
-	let valid = false;
 	let directionValueBinding = '';
-
+	let directionInputElement: HTMLInputElement;
+	let valid = false;
 	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 
+	function handleValidationFail(): void {
+		directionInputElement.focus();
+		return;
+	}
 	function areInputsValid(): boolean {
 		if (directionValueBinding.length < 2) {
 			return false;
@@ -31,14 +35,17 @@
 
 	function resetInputs() {
 		directionValueBinding = '';
-		isActive = false;
 	}
 
 	function insertDirection() {
-		// ! Need to use spread syntax to trigger a state update
+		if (!valid) {
+			handleValidationFail();
+			return;
+		}
 		$recipe[RecipeKeys.DIRECTIONS] = [...$recipe[RecipeKeys.DIRECTIONS], directionValueBinding];
 
 		resetInputs();
+		isActive = false;
 	}
 </script>
 
@@ -59,6 +66,7 @@
 		placeholder="Describe Step"
 		class:valid
 		bind:value={directionValueBinding}
+		bind:this={directionInputElement}
 		on:click={(e) => {
 			e.stopPropagation();
 		}}
