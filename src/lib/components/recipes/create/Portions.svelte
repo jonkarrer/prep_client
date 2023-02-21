@@ -10,7 +10,7 @@
 
 <Paper>
 	<Headline title="Portions" />
-	<div class:active={$recipe[RecipeKeys.PORTIONS] > 0}>
+	<div class="root" class:active={$recipe[RecipeKeys.PORTIONS] > 0}>
 		{$recipe[RecipeKeys.PORTIONS].toLocaleString('en-US', {
 			minimumIntegerDigits: 2,
 			useGrouping: false
@@ -28,18 +28,10 @@
 </Paper>
 
 <style>
-	div {
-		width: 100%;
-		margin-top: 15px;
-		padding: 12px 15px;
-
+	.root {
 		text-align: center;
 		font-size: var(--xl);
 		font-weight: 600;
-		color: var(--darker);
-
-		border: var(--dashed-border);
-		border-radius: var(--border-radius);
 	}
 	.active {
 		color: var(--accent);

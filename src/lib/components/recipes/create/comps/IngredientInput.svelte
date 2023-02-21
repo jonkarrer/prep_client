@@ -37,17 +37,6 @@
 		nameInputValue = '';
 	}
 
-	$: {
-		(function areInputsValid(): void {
-			if (!quantityValidState || !unitValidState || !nameValidState) {
-				console.log('All Inputs Not Valid');
-				allInputsAreValid = false;
-			} else {
-				allInputsAreValid = true;
-			}
-		})();
-	}
-
 	function handleValidationFail(): void {
 		if (!quantityValidState) {
 			quantityInputElement.focus();
@@ -76,15 +65,25 @@
 			unit: unitInputValue
 		};
 
-		// ! Need to use spread syntax to trigger a state update
 		$recipe[RecipeKeys.INGREDIENTS] = [...$recipe[RecipeKeys.INGREDIENTS], newIngredient];
 
 		resetInputs();
 		isActive = false;
 	}
+
+	$: {
+		(function areInputsValid(): void {
+			if (!quantityValidState || !unitValidState || !nameValidState) {
+				console.log('All Inputs Not Valid');
+				allInputsAreValid = false;
+			} else {
+				allInputsAreValid = true;
+			}
+		})();
+	}
 </script>
 
-<button class:allInputsAreValid on:click={() => (isActive = !isActive)}>
+<button class="root" class:allInputsAreValid on:click={() => (isActive = !isActive)}>
 	<div class="title">
 		<div>Add Ingredient</div>
 
@@ -119,32 +118,16 @@
 </div>
 
 <style>
-	button {
+	.root {
 		display: grid;
 		align-items: center;
 		grid-auto-flow: row;
-		gap: 20px;
-
-		width: 100%;
-		margin-top: 15px;
-		padding: 12px 15px;
-
-		text-align: left;
-		font-size: var(--rg);
-		color: var(--darker);
-
-		border: var(--dashed-border);
-		border-radius: var(--border-radius);
 	}
 
 	.title {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-	}
-	.title_icon {
-		height: 16px;
-		width: 16px;
 	}
 
 	.input_wrapper {

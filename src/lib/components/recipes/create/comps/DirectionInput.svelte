@@ -7,23 +7,29 @@
 	import type { Writable } from 'svelte/store';
 	import { RecipeKeys, type Recipe } from '$lib/types/Recipe';
 
-	export let nextOrder: number;
-
 	let isActive = false;
 	let directionValueBinding = '';
 	let directionInputElement: HTMLInputElement;
 	let valid = false;
 	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
+	export let nextOrder: number;
 
-	function handleValidationFail(): void {
-		directionInputElement.focus();
-		return;
-	}
 	function areInputsValid(): boolean {
 		if (directionValueBinding.length < 2) {
 			return false;
 		}
 		return true;
+	}
+
+	function insertDirection() {
+		if (!valid) {
+			directionInputElement.focus();
+			return;
+		}
+		$recipe[RecipeKeys.DIRECTIONS] = [...$recipe[RecipeKeys.DIRECTIONS], directionValueBinding];
+
+		directionValueBinding = '';
+		isActive = false;
 	}
 
 	$: if (areInputsValid()) {
@@ -32,24 +38,9 @@
 	} else {
 		valid = false;
 	}
-
-	function resetInputs() {
-		directionValueBinding = '';
-	}
-
-	function insertDirection() {
-		if (!valid) {
-			handleValidationFail();
-			return;
-		}
-		$recipe[RecipeKeys.DIRECTIONS] = [...$recipe[RecipeKeys.DIRECTIONS], directionValueBinding];
-
-		resetInputs();
-		isActive = false;
-	}
 </script>
 
-<button class:valid on:click={() => (isActive = !isActive)}>
+<button class="root" class:valid on:click={() => (isActive = !isActive)}>
 	<div class="title">
 		<div class="next_number">
 			{nextOrder.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
@@ -75,13 +66,13 @@
 	/>
 </button>
 
-<div style:display={isActive ? 'flex' : 'none'} class="create_buttons">
+<div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
 	<Button callback={insertDirection} text="Commit" icon={PlusCircleTwoTone} width="90px" />
 	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
 <style>
-	button {
+	.root {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
@@ -97,6 +88,9 @@
 		border: var(--dashed-border);
 		border-radius: var(--border-radius);
 	}
+	input {
+		grid-column: 1 / span 2;
+	}
 
 	.title {
 		display: flex;
@@ -105,39 +99,16 @@
 	.title_icon {
 		align-self: center;
 		justify-self: flex-end;
-
-		height: 16px;
-		width: 16px;
 	}
 	.next_number {
 		font-weight: 600;
 	}
 
-	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-		border: var(--dashed-border);
-	}
-	input:focus {
-		outline: none;
-	}
-	input {
-		grid-column: 1 / span 2;
-	}
-
-	.create_buttons {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-
-		margin-top: 15px;
-	}
 	.valid {
 		border: var(--solid-border);
 		color: var(--contrast);
+	}
+	.valid .next_number {
+		color: var(--accent);
 	}
 </style>

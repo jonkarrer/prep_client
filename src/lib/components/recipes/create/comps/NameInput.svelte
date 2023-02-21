@@ -32,19 +32,8 @@
 
 <style>
 	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-
-		border: var(--dashed-border);
 		grid-column: 1 / span 2;
 	}
-	input:focus {
-		outline: none;
-	}
-
 	.valid {
 		border: var(--solid-border);
 	}

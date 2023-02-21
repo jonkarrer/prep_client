@@ -5,7 +5,7 @@
 	export let order: number;
 </script>
 
-<div class="direction">
+<article class="preview">
 	<div class="number">
 		{(order + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
 	</div>
@@ -13,20 +13,14 @@
 	<div class="checkbox">
 		<Checkbox />
 	</div>
-</div>
+</article>
 
 <style>
-	.direction {
+	.preview {
 		display: grid;
 		grid-template-columns: 20px auto 50px;
 		align-items: baseline;
 		gap: 10px;
-
-		margin-top: 15px;
-		padding: 12px 15px;
-
-		border: var(--solid-border);
-		border-radius: 3px;
 	}
 	.text {
 		font-size: var(--rg);
@@ -37,7 +31,7 @@
 		color: var(--accent);
 		font-weight: bold;
 	}
-	.direction > *:last-child {
+	article > *:last-child {
 		justify-self: flex-end;
 	}
 </style>

@@ -24,4 +24,49 @@
 		gap: 24px;
 		margin: 20px var(--gutter-mobile) 40px;
 	}
+	:global(.root) {
+		gap: 20px;
+
+		width: 100%;
+		margin-top: 15px;
+		padding: 12px 15px;
+
+		font-size: var(--rg);
+		color: var(--darker);
+
+		border: var(--dashed-border);
+		border-radius: var(--border-radius);
+	}
+	:global(.preview) {
+		margin-top: 15px;
+		padding: 12px 15px;
+
+		font-size: var(--rg);
+		color: var(--contrast);
+
+		border: var(--solid-border);
+		border-radius: var(--border-radius);
+	}
+	:global(input) {
+		width: 100%;
+		padding: 12px 15px;
+
+		font-size: var(--rg);
+		border-radius: var(--border-radius);
+		border: var(--dashed-border);
+		outline: none;
+	}
+	:global(.action_buttons) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+
+		width: 100%;
+		margin-top: 15px;
+	}
+	:global(.title_icon) {
+		height: 16px;
+		width: 16px;
+	}
 </style>

@@ -18,6 +18,3 @@
 
 	<DirectionInput nextOrder={$recipe[RecipeKeys.DIRECTIONS].length + 1} />
 </Paper>
-
-<style>
-</style>

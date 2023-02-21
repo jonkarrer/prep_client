@@ -10,16 +10,22 @@
 	let valid = false;
 	export let tempTags: Array<string>;
 
-	function handleValidationFail(): void {
-		tagInputElement.focus();
-		return;
-	}
-
 	function areInputsValid(): boolean {
 		if (tagValueBinding.length < 2) {
 			return false;
 		}
 		return true;
+	}
+
+	function insertTag() {
+		if (!valid) {
+			tagInputElement.focus();
+			return;
+		}
+		tempTags = [...tempTags, tagValueBinding];
+
+		tagValueBinding = '';
+		isActive = false;
 	}
 
 	$: if (areInputsValid()) {
@@ -28,19 +34,9 @@
 	} else {
 		valid = false;
 	}
-
-	function insertTag() {
-		if (!valid) {
-			handleValidationFail();
-		}
-		tempTags = [...tempTags, tagValueBinding];
-
-		tagValueBinding = '';
-		isActive = false;
-	}
 </script>
 
-<button class:valid on:click={() => (isActive = !isActive)}>
+<button class="root" class:valid on:click={() => (isActive = !isActive)}>
 	<div class="title">
 		<div>Add New Tag</div>
 	</div>
@@ -63,27 +59,16 @@
 	/>
 </button>
 
-<div style:display={isActive ? 'flex' : 'none'} class="create_buttons">
+<div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
 	<Button callback={insertTag} text="Commit" icon={PlusCircleTwoTone} width="90px" />
 	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
 <style>
-	button {
+	.root {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
-		gap: 20px;
-
-		width: 100%;
-		margin-top: 15px;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		color: var(--darker);
-
-		border: var(--dashed-border);
-		border-radius: var(--border-radius);
 	}
 
 	.title {
@@ -93,33 +78,12 @@
 	.title_icon {
 		align-self: center;
 		justify-self: flex-end;
-
-		height: 16px;
-		width: 16px;
 	}
 
 	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-		border: var(--dashed-border);
 		grid-column: 1 / span 2;
 	}
-	input:focus {
-		outline: none;
-	}
 
-	.create_buttons {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-
-		width: 100%;
-		margin-top: 15px;
-	}
 	.valid {
 		border: var(--solid-border);
 		color: var(--contrast);

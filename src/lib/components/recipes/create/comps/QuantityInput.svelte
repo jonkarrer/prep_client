@@ -35,17 +35,6 @@
 />
 
 <style>
-	input {
-		width: 100%;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		border-radius: var(--border-radius);
-		border: var(--dashed-border);
-	}
-	input:focus {
-		outline: none;
-	}
 	.valid {
 		border: var(--solid-border);
 	}
