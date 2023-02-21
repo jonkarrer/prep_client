@@ -16,12 +16,31 @@
 		directions: [],
 		ingredients: []
 	};
+
 	let recipeStore: Writable<Recipe> = writable(recipe);
 	setContext<Writable<Recipe>>('recipe', recipeStore);
 
 	$: console.log($recipeStore);
 
 	function saveRecipe() {
+		if ($recipeStore.title.length < 2) {
+			alert('Recipe Title is Missing');
+			return;
+		}
+
+		if ($recipeStore.ingredients.length === 0) {
+			alert('Recipe Ingredient is Missing');
+			return;
+		}
+		if ($recipeStore.directions.length === 0) {
+			alert('Recipe Direction is Missing');
+			return;
+		}
+		if ($recipeStore.portions === 0) {
+			alert('Recipe Portions is Missing');
+			return;
+		}
+
 		console.log('FINAL RECIPE', $recipeStore);
 	}
 
