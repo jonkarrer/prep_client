@@ -76,17 +76,6 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
-		gap: 20px;
-
-		width: 100%;
-		margin-top: 15px;
-		padding: 12px 15px;
-
-		font-size: var(--rg);
-		color: var(--darker);
-
-		border: var(--dashed-border);
-		border-radius: var(--border-radius);
 	}
 	input {
 		grid-column: 1 / span 2;
