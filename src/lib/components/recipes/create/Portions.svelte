@@ -46,8 +46,9 @@
 	}
 	.slider {
 		margin-top: 24px;
-
 		-webkit-appearance: none;
+		appearance: none;
+
 		width: 100%;
 		height: 16px;
 		background: rgba(90, 90, 90, 0.2);

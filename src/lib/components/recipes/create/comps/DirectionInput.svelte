@@ -10,9 +10,24 @@
 	export let nextOrder: number;
 
 	let isActive = false;
+	let valid = false;
+	let directionValueBinding = '';
+
 	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 
-	let directionValueBinding = '';
+	function areInputsValid(): boolean {
+		if (directionValueBinding.length < 2) {
+			return false;
+		}
+		return true;
+	}
+
+	$: if (areInputsValid()) {
+		valid = true;
+		console.log(directionValueBinding);
+	} else {
+		valid = false;
+	}
 
 	function resetInputs() {
 		directionValueBinding = '';
@@ -27,7 +42,7 @@
 	}
 </script>
 
-<button class="root" on:click={() => (isActive = !isActive)}>
+<button class:valid on:click={() => (isActive = !isActive)}>
 	<div class="title">
 		<div class="next_number">
 			{nextOrder.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
@@ -40,9 +55,9 @@
 	</div>
 
 	<input
-		class="name"
 		type="text"
 		placeholder="Describe Step"
+		class:valid
 		bind:value={directionValueBinding}
 		on:click={(e) => {
 			e.stopPropagation();
@@ -58,7 +73,7 @@
 </div>
 
 <style>
-	.root {
+	button {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
@@ -96,13 +111,12 @@
 
 		font-size: var(--rg);
 		border-radius: var(--border-radius);
+		border: var(--dashed-border);
 	}
 	input:focus {
-		border: var(--solid-border);
 		outline: none;
 	}
-	input.name {
-		border: var(--dashed-border);
+	input {
 		grid-column: 1 / span 2;
 	}
 
@@ -113,5 +127,9 @@
 		gap: 10px;
 
 		margin-top: 15px;
+	}
+	.valid {
+		border: var(--solid-border);
+		color: var(--contrast);
 	}
 </style>
