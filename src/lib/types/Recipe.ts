@@ -10,7 +10,7 @@ export enum RecipeKeys {
 }
 
 export type Recipe = {
-	id?: string;
+	id: string;
 	title: string;
 	portions: number;
 	ingredients: Array<Ingredient>;

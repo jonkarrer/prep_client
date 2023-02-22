@@ -10,10 +10,12 @@
 	import type { Recipe } from '$lib/types/Recipe';
 	import { Fetch, ContentType } from '$lib/utils/Fetch';
 	import type { PageData } from './$types';
+	import { nanoid } from 'nanoid/non-secure';
 
 	export let data: PageData;
 
 	const recipe: Recipe = {
+		id: nanoid(),
 		title: '',
 		portions: 0,
 		tags: [],
@@ -59,6 +61,7 @@
 
 	function resetAllValues() {
 		const blankRecipe: Recipe = {
+			id: nanoid(),
 			title: '',
 			portions: 0,
 			tags: [],
