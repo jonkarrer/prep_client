@@ -23,8 +23,9 @@
 			:root {
 				--primary: #a5a5a5;
 				--contrast: #161616;
-				--accent: #c40000;
+				--accent: #ac0000;
 				--darker: #5a5a5a;
+				--lighter: #c5c5c5;
 
 				--solid-border: 1px solid var(--contrast);
 				--dashed-border: 1px dashed var(--darker);
@@ -52,9 +53,14 @@
 				border-radius: var(--border-radius);
 				padding: 12px 15px;
 				font-size: var(--rg);
+				outline: none;
 			}
 			h2 {
 				font-size: 20px;
+			}
+			a {
+				text-decoration: unset;
+				color: inherit;
 			}
 		</style>
 		%sveltekit.head%
