@@ -8,6 +8,10 @@
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
 	import type { Recipe } from '$lib/types/Recipe';
+	import { Fetch, ContentType } from '$lib/utils/Fetch';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	const recipe: Recipe = {
 		title: '',
@@ -22,7 +26,7 @@
 
 	$: console.log($recipeStore);
 
-	function saveRecipe() {
+	async function saveRecipe() {
 		if ($recipeStore.title.length < 2) {
 			alert('Recipe Title is Missing');
 			return;
@@ -42,6 +46,11 @@
 		}
 
 		console.log('FINAL RECIPE', $recipeStore);
+		const request = new Fetch('http://127.0.0.1/api/recipes/create');
+		await request.post(
+			JSON.stringify({ userId: data.userId, recipe: $recipeStore }),
+			ContentType.JSON
+		);
 	}
 
 	function saveDraft() {
