@@ -43,6 +43,8 @@ export class Fetch {
 			const body = this.parseResponse(response);
 
 			console.log('Res Body', await response.json());
+
+			return true;
 		} catch (error) {
 			if (error instanceof SyntaxError) {
 				// Unexpected token < in JSON
@@ -50,6 +52,7 @@ export class Fetch {
 			} else {
 				console.error(error);
 			}
+			return false;
 		}
 	}
 }

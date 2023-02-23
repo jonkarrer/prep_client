@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { Session } from '$lib/types/Session';
 import type { PageServerLoad } from './$types';
+import type { Recipe } from '$lib/types/Recipe';
 // import { recipes } from "$lib/database/recipe_database";
 
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
@@ -23,8 +24,12 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 		return error(404);
 	}
 
-	const res: any = await req.json();
+	type AllRecipesResponse = {
+		status: string;
+		data: Array<Recipe>;
+	};
+	const res: AllRecipesResponse = await req.json();
 	console.log('res', res);
 
-	return { recipes: res };
+	return { recipes: res.data };
 };

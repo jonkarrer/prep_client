@@ -33,7 +33,6 @@
 		align-items: center;
 		justify-content: center;
 
-		min-width: 70px;
 		padding: 6px 9px;
 
 		font-size: var(--sm);

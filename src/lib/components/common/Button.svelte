@@ -26,10 +26,9 @@
 		align-items: center;
 		justify-content: center;
 
-		min-width: 70px;
 		padding: 6px 9px;
 
-		font-size: 12px;
+		font-size: var(--sm);
 		color: var(--contrast);
 
 		border-radius: var(--border-radius);

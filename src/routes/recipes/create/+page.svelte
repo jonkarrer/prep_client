@@ -6,7 +6,7 @@
 	import Portions from '$lib/components/recipes/create/Portions.svelte';
 </script>
 
-<div id="recipe_creation_form">
+<main>
 	<Title />
 
 	<Ingredients />
@@ -16,13 +16,12 @@
 	<Tags />
 
 	<Portions />
-</div>
+</main>
 
 <style>
-	div {
+	main {
 		display: grid;
 		gap: 24px;
-		margin: 20px var(--gutter-mobile) 40px;
 	}
 	:global(.root) {
 		gap: 20px;

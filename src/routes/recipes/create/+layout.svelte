@@ -11,6 +11,7 @@
 	import { Fetch, ContentType } from '$lib/utils/Fetch';
 	import type { PageData } from './$types';
 	import { nanoid } from 'nanoid/non-secure';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -49,10 +50,16 @@
 
 		console.log('FINAL RECIPE', $recipeStore);
 		const request = new Fetch('http://127.0.0.1/api/recipes/create');
-		await request.post(
+		const response = await request.post(
 			JSON.stringify({ userId: data.userId, recipe: $recipeStore }),
 			ContentType.JSON
 		);
+		if (!response) {
+			console.log('Recipe Not Created');
+			return;
+		} else {
+			goto('/recipes');
+		}
 	}
 
 	function saveDraft() {
