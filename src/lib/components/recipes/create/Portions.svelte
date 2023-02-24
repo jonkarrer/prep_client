@@ -17,14 +17,7 @@
 		})}
 	</div>
 
-	<input
-		type="range"
-		min="0"
-		max="60"
-		bind:value={$recipe[RecipeKeys.PORTIONS]}
-		class="slider"
-		id="myRange"
-	/>
+	<input type="range" min="0" max="100" bind:value={$recipe[RecipeKeys.PORTIONS]} class="slider" />
 </Paper>
 
 <style>

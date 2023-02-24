@@ -25,7 +25,6 @@
 		white-space: nowrap;
 		overflow: hidden !important;
 		text-overflow: ellipsis;
-		/* text-overflow: ellipsis; */
 	}
 	strong {
 		font-weight: 600;

@@ -14,7 +14,7 @@
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-
+	let allInputsAreValid = false;
 	const recipe: Recipe = {
 		id: nanoid(),
 		title: '',
@@ -27,27 +27,54 @@
 	let recipeStore: Writable<Recipe> = writable(recipe);
 	setContext<Writable<Recipe>>('recipe', recipeStore);
 
-	$: console.log($recipeStore);
+	$: {
+		(() => {
+			if ($recipeStore.title.length < 2) {
+				allInputsAreValid = false;
+				return;
+			}
+			if ($recipeStore.ingredients.length === 0) {
+				allInputsAreValid = false;
+				return;
+			}
+			if ($recipeStore.directions.length === 0) {
+				allInputsAreValid = false;
+				return;
+			}
+			if ($recipeStore.portions === 0) {
+				allInputsAreValid = false;
+				return;
+			}
+			console.log('valid!!!!');
 
-	async function saveRecipe() {
+			allInputsAreValid = true;
+			return;
+		})();
+	}
+
+	function validateAllInputs() {
 		if ($recipeStore.title.length < 2) {
 			alert('Recipe Title is Missing');
-			return;
+			return false;
 		}
-
 		if ($recipeStore.ingredients.length === 0) {
 			alert('Recipe Ingredient is Missing');
-			return;
+			return false;
 		}
 		if ($recipeStore.directions.length === 0) {
 			alert('Recipe Direction is Missing');
-			return;
+			return false;
 		}
 		if ($recipeStore.portions === 0) {
 			alert('Recipe Portions is Missing');
+			return false;
+		}
+		return true;
+	}
+	async function saveRecipe() {
+		if (!validateAllInputs()) {
 			return;
 		}
-
 		console.log('FINAL RECIPE', $recipeStore);
 		const request = new Fetch('http://127.0.0.1/api/recipes/create');
 		const response = await request.post(
@@ -82,7 +109,7 @@
 </script>
 
 <Mobile>
-	<Button callback={saveRecipe} text="Save" icon={SaveTwoTone} />
+	<Button toggle={allInputsAreValid} callback={saveRecipe} text="Save" icon={SaveTwoTone} />
 	<Button callback={resetAllValues} text="Reset" icon={ReloadOutlined} />
 	<Button callback={saveDraft} text="Draft" icon={BlocksOutlined} />
 </Mobile>
