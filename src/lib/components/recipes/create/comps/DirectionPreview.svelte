@@ -26,8 +26,10 @@
 		font-size: var(--rg);
 		color: var(--contrast);
 		line-height: 1.5;
-		max-width: 52vw;
-		overflow-wrap: break-word;
+		max-width: 55vw;
+		white-space: nowrap;
+		overflow: hidden !important;
+		text-overflow: ellipsis;
 	}
 	.number {
 		font-size: var(--rg);

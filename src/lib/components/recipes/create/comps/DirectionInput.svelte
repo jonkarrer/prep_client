@@ -85,7 +85,7 @@
 <style>
 	.root {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 2fr 1fr;
 		grid-auto-flow: row;
 	}
 	.content {
