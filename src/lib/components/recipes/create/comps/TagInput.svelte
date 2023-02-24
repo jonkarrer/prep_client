@@ -10,6 +10,10 @@
 	let valid = false;
 	export let tempTags: Array<string>;
 
+	function resetInputs() {
+		tagValueBinding = '';
+	}
+
 	function areInputsValid(): boolean {
 		if (tagValueBinding.length < 2) {
 			return false;
@@ -67,7 +71,7 @@
 		icon={PlusCircleTwoTone}
 		width="90px"
 	/>
-	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
+	<Button callback={resetInputs} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
 <style>

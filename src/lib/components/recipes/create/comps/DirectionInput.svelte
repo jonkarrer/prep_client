@@ -9,10 +9,14 @@
 
 	let isActive = false;
 	let directionValueBinding = '';
-	let directionInputElement: HTMLInputElement;
+	let directionInputElement: HTMLDivElement;
 	let valid = false;
 	const recipe: Writable<Recipe> = getContext<Writable<Recipe>>('recipe');
 	export let nextOrder: number;
+
+	function resetInputs() {
+		directionValueBinding = '';
+	}
 
 	function areInputsValid(): boolean {
 		if (directionValueBinding.length < 2) {
@@ -52,17 +56,18 @@
 		<PlusSquareTwoTone toggle={isActive} />
 	</div>
 
-	<input
-		type="text"
+	<div
 		placeholder="Describe Step"
 		class:valid
-		bind:value={directionValueBinding}
+		class="content"
+		bind:textContent={directionValueBinding}
 		bind:this={directionInputElement}
 		on:click={(e) => {
 			e.stopPropagation();
 		}}
 		on:keyup={(e) => e.preventDefault()}
 		style:display={isActive ? 'block' : 'none'}
+		contenteditable
 	/>
 </button>
 
@@ -74,7 +79,7 @@
 		icon={PlusCircleTwoTone}
 		width="90px"
 	/>
-	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
+	<Button callback={resetInputs} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
 <style>
@@ -83,8 +88,14 @@
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-flow: row;
 	}
-	input {
+	.content {
 		grid-column: 1 / span 2;
+		border-radius: var(--border-radius);
+		border: var(--dashed-border);
+		text-align: left;
+		padding: 12px 15px;
+		font-size: var(--rg);
+		outline: none;
 	}
 
 	.title {

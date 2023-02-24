@@ -9,7 +9,7 @@
 	<div class="number">
 		{(order + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
 	</div>
-	<div class="text">{direction}</div>
+	<p class="text">{direction}</p>
 	<div class="checkbox">
 		<Checkbox />
 	</div>
@@ -18,13 +18,16 @@
 <style>
 	.preview {
 		display: grid;
-		grid-template-columns: 20px auto 50px;
+		grid-template-columns: 20px auto 1fr;
 		align-items: baseline;
 		gap: 10px;
 	}
 	.text {
 		font-size: var(--rg);
 		color: var(--contrast);
+		line-height: 1.5;
+		max-width: 52vw;
+		overflow-wrap: break-word;
 	}
 	.number {
 		font-size: var(--rg);
