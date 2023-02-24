@@ -43,6 +43,6 @@
 	}
 	.selected {
 		background-color: var(--accent);
-		color: #fff;
+		color: var(--lighter);
 	}
 </style>

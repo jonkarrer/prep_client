@@ -50,6 +50,7 @@
 		-webkit-transition: 0.2s;
 		transition: opacity 0.2s;
 		border-radius: var(--border-radius);
+		border: var(--solid-border);
 	}
 
 	.slider:hover {

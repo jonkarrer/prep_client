@@ -88,7 +88,7 @@
 		<div>Add Ingredient</div>
 
 		<div class="title_icon">
-			<PlusSquareTwoTone {isActive} />
+			<PlusSquareTwoTone toggle={isActive} />
 		</div>
 	</div>
 
@@ -113,7 +113,13 @@
 </button>
 
 <div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
-	<Button callback={insertIngredient} text="Commit" icon={PlusCircleTwoTone} width="90px" />
+	<Button
+		bind:toggle={allInputsAreValid}
+		callback={insertIngredient}
+		text="Commit"
+		icon={PlusCircleTwoTone}
+		width="90px"
+	/>
 	<Button callback={resetInputs} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 

@@ -6,18 +6,14 @@
 	) => any;
 	export let text: string;
 	export let icon: any;
-	export let borderStyles: string = 'solid';
 	export let width: string = 'auto';
+	export let toggle = false;
 </script>
 
-<button
-	style:width
-	style:border={borderStyles === 'solid' ? 'var(--solid-border)' : 'var(--dashed-border)'}
-	on:click={(e) => callback(e)}
->
+<button class:toggle style:width on:click={(e) => callback(e)}>
 	<div class="text">{text}</div>
 
-	<div class="icon"><svelte:component this={icon} /></div>
+	<div class="icon"><svelte:component this={icon} bind:toggle /></div>
 </button>
 
 <style>
@@ -26,15 +22,23 @@
 		align-items: center;
 		justify-content: center;
 
-		padding: 6px 9px;
+		padding: 7px 9px;
 
 		font-size: var(--sm);
 		color: var(--contrast);
+		font-family: 500;
 
 		border-radius: var(--border-radius);
 		border: var(--solid-border);
 
 		cursor: pointer;
+	}
+
+	.toggle {
+		background-color: var(--accent);
+	}
+	.toggle .text {
+		color: var(--lighter);
 	}
 
 	.text {

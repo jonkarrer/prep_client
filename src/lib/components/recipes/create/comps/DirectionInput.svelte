@@ -49,7 +49,7 @@
 	</div>
 
 	<div class="title_icon">
-		<PlusSquareTwoTone {isActive} />
+		<PlusSquareTwoTone toggle={isActive} />
 	</div>
 
 	<input
@@ -67,7 +67,13 @@
 </button>
 
 <div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
-	<Button callback={insertDirection} text="Commit" icon={PlusCircleTwoTone} width="90px" />
+	<Button
+		bind:toggle={valid}
+		callback={insertDirection}
+		text="Commit"
+		icon={PlusCircleTwoTone}
+		width="90px"
+	/>
 	<Button callback={(e) => console.log(e)} text="Erase" icon={CloseCircleTwoTone} width="90px" />
 </div>
 
