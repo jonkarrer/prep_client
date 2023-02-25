@@ -7,7 +7,7 @@
 </script>
 
 <input
-	style:border={$recipe[RecipeKeys.TITLE].length === 0
+	style:border={$recipe[RecipeKeys.TITLE].length < 2
 		? 'var(--dashed-border)'
 		: 'var(--solid-border)'}
 	bind:value={$recipe[RecipeKeys.TITLE]}

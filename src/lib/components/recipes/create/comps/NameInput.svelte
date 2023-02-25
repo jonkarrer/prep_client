@@ -3,18 +3,10 @@
 	export let nameElementBinding: HTMLInputElement;
 	export let valid: boolean;
 
-	function areInputsValid(): boolean {
-		if (nameValueBinding.length < 2) {
-			return false;
-		}
-		return true;
-	}
-
-	$: if (areInputsValid()) {
-		valid = true;
-		console.log(nameValueBinding);
-	} else {
+	$: if (nameValueBinding.length < 2) {
 		valid = false;
+	} else {
+		valid = true;
 	}
 </script>
 

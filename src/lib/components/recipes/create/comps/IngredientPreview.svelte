@@ -1,5 +1,4 @@
 <script lang="ts">
-	import IngredientIcon from '$lib/assets/icons/IngredientIcon.svelte';
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
 
 	export let name: string;
@@ -8,7 +7,7 @@
 </script>
 
 <div class="preview">
-	<div class="text"><strong>{quantity}</strong>, <strong>{unit}</strong>, {name}</div>
+	<div class="text"><strong>{quantity}</strong> <strong>{unit}</strong>, {name}</div>
 
 	<Checkbox />
 </div>

@@ -18,13 +18,6 @@
 		directionValueBinding = '';
 	}
 
-	function areInputsValid(): boolean {
-		if (directionValueBinding.length < 2) {
-			return false;
-		}
-		return true;
-	}
-
 	function insertDirection() {
 		if (!valid) {
 			directionInputElement.focus();
@@ -36,11 +29,10 @@
 		isActive = false;
 	}
 
-	$: if (areInputsValid()) {
-		valid = true;
-		console.log(directionValueBinding);
-	} else {
+	$: if (directionValueBinding.length < 2) {
 		valid = false;
+	} else {
+		valid = true;
 	}
 </script>
 

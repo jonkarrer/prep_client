@@ -37,6 +37,7 @@
 
 		width: 100%;
 		height: 16px;
+		padding: 8px;
 		background: rgba(90, 90, 90, 0.2);
 		outline: none;
 		opacity: 0.7;
@@ -53,7 +54,7 @@
 	.slider::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
-		width: 30px;
+		width: 25px;
 		height: 35px;
 		background: var(--contrast);
 		box-shadow: none;
@@ -64,7 +65,7 @@
 	}
 
 	.slider::-moz-range-thumb {
-		width: 30px;
+		width: 25px;
 		height: 35px;
 		background: var(--contrast);
 		border: var(--solid-border);

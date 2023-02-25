@@ -74,7 +74,6 @@
 	$: {
 		(function areInputsValid(): void {
 			if (!quantityValidState || !unitValidState || !nameValidState) {
-				console.log('All Inputs Not Valid');
 				allInputsAreValid = false;
 			} else {
 				allInputsAreValid = true;

@@ -3,22 +3,14 @@
 	export let unitElementBinding: HTMLInputElement;
 	export let valid: boolean;
 
-	function areInputsValid(): boolean {
-		let unitOfMeasure =
-			/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|cups|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice))+\s*)$/gi;
+	// Regex for the unit of measure.
+	let unitOfMeasure =
+		/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice))+\s*)$/gi;
 
-		if (unitValueBinding.length === 0 || !unitOfMeasure.test(unitValueBinding)) {
-			console.log('invalid unit');
-			return false;
-		}
-		return true;
-	}
-
-	$: if (areInputsValid()) {
-		valid = true;
-		console.log(unitValueBinding);
-	} else {
+	$: if (unitValueBinding.length === 0 || !unitOfMeasure.test(unitValueBinding)) {
 		valid = false;
+	} else {
+		valid = true;
 	}
 </script>
 

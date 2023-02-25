@@ -3,22 +3,13 @@
 	export let quantityElementBinding: HTMLInputElement;
 	export let valid: boolean;
 
-	function areInputsValid(): boolean {
-		// Regular expression to match a number or a fraction
-		const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
+	// Regular expression to match a number or a fraction
+	const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
 
-		if (!quantityValueBinding.length || !numberFractionRegex.test(quantityValueBinding)) {
-			console.log('invalid quantity');
-			return false;
-		}
-		return true;
-	}
-
-	$: if (areInputsValid()) {
-		valid = true;
-		console.log(quantityValueBinding);
-	} else {
+	$: if (!quantityValueBinding.length || !numberFractionRegex.test(quantityValueBinding)) {
 		valid = false;
+	} else {
+		valid = true;
 	}
 </script>
 

@@ -14,13 +14,6 @@
 		tagValueBinding = '';
 	}
 
-	function areInputsValid(): boolean {
-		if (tagValueBinding.length < 2) {
-			return false;
-		}
-		return true;
-	}
-
 	function insertTag() {
 		if (!valid) {
 			tagInputElement.focus();
@@ -32,11 +25,10 @@
 		isActive = false;
 	}
 
-	$: if (areInputsValid()) {
-		valid = true;
-		console.log(tagValueBinding);
-	} else {
+	$: if (tagValueBinding.length < 2) {
 		valid = false;
+	} else {
+		valid = true;
 	}
 </script>
 

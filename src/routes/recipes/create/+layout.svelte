@@ -45,7 +45,6 @@
 				allInputsAreValid = false;
 				return;
 			}
-			console.log('valid!!!!');
 
 			allInputsAreValid = true;
 			return;
@@ -71,6 +70,7 @@
 		}
 		return true;
 	}
+
 	async function saveRecipe() {
 		if (!validateAllInputs()) {
 			return;
