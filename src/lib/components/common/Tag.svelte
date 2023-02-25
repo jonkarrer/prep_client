@@ -12,7 +12,7 @@
 
 		padding: 5px 9px;
 
-		font-size: var(--xs);
+		font-size: var(--sm);
 		color: var(--contrast);
 
 		border: var(--solid-border);

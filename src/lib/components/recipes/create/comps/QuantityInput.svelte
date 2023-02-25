@@ -4,7 +4,7 @@
 	export let valid: boolean;
 
 	// Regular expression to match a number or a fraction
-	const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+)(?:\/(\d+))?)$/;
+	const numberFractionRegex = /^(?:(?:(\d+)\s+)?(\d+(?:\.\d+)?)(?:\/(\d+(?:\.\d+)?))?)$/;
 
 	$: if (!quantityValueBinding.length || !numberFractionRegex.test(quantityValueBinding)) {
 		valid = false;

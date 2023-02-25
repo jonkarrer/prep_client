@@ -27,7 +27,7 @@
 	<main>
 		<Paper>
 			{#each recipes as recipe}
-				<article>
+				<button on:click={() => goto('/recipes/view/' + recipe.id)}>
 					<div class="heading">
 						<h1>{recipe.title}</h1>
 						<Checkbox />
@@ -37,21 +37,24 @@
 							<Tag {tagName} />
 						{/each}
 					</div>
-				</article>
+				</button>
 			{/each}
 		</Paper>
 	</main>
 </PageTransition>
 
 <style>
-	article {
+	button {
 		display: grid;
 		gap: 16px;
 
-		padding-bottom: 15px;
+		width: 100%;
+		padding-bottom: 24px;
 		border-bottom: solid 1px var(--contrast);
+
+		text-align: left;
 	}
-	article:not(:first-child) {
+	button:not(:first-child) {
 		margin-top: 15px;
 	}
 	.heading {
@@ -67,18 +70,5 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
-	}
-	.tags span {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		padding: 6px 9px;
-
-		font-size: var(--sm);
-		color: var(--contrast);
-
-		border: var(--solid-border);
-		border-radius: var(--border-radius);
 	}
 </style>

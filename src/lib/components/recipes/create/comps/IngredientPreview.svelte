@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
+	import Ingredient from '$lib/components/recipes/Ingredient.svelte';
 
 	export let name: string;
 	export let quantity: string;
@@ -7,8 +8,7 @@
 </script>
 
 <div class="preview">
-	<div class="text"><strong>{quantity}</strong> <strong>{unit}</strong>, {name}</div>
-
+	<Ingredient {quantity} {unit} {name} />
 	<Checkbox />
 </div>
 
@@ -17,16 +17,5 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-	}
-	.text {
-		text-align: left;
-		max-width: 55vw;
-		white-space: nowrap;
-		overflow: hidden !important;
-		text-overflow: ellipsis;
-	}
-	strong {
-		font-weight: 600;
-		color: var(--accent);
 	}
 </style>
