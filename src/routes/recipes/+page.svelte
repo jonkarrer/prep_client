@@ -2,6 +2,7 @@
 	import Mobile from '$lib/components/headers/Mobile.svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import Search from '$lib/components/common/Search.svelte';
+	import Tag from '$lib/components/common/Tag.svelte';
 	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
 	import CaretDownOutlined from '$lib/assets/icons/CaretDownOutlined.svelte';
 	import type { PageData } from './$types';
@@ -32,8 +33,8 @@
 						<Checkbox />
 					</div>
 					<div class="tags">
-						{#each recipe.tags as tag}
-							<span>{tag}</span>
+						{#each recipe.tags as tagName}
+							<Tag {tagName} />
 						{/each}
 					</div>
 				</article>

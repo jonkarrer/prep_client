@@ -33,9 +33,9 @@
 		align-items: center;
 		justify-content: center;
 
-		padding: 6px 9px;
+		padding: 5px 9px;
 
-		font-size: var(--sm);
+		font-size: var(--xs);
 		color: var(--contrast);
 
 		border: var(--solid-border);

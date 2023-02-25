@@ -10,14 +10,14 @@
 
 <Paper>
 	<Headline title="Portions" />
-	<div class="root" class:active={$recipe[RecipeKeys.PORTIONS] > 0}>
-		{$recipe[RecipeKeys.PORTIONS].toLocaleString('en-US', {
-			minimumIntegerDigits: 2,
-			useGrouping: false
-		})}
-	</div>
+	<input
+		type="number"
+		bind:value={$recipe[RecipeKeys.PORTIONS]}
+		class="root"
+		class:active={$recipe[RecipeKeys.PORTIONS] > 0}
+	/>
 
-	<input type="range" min="0" max="100" bind:value={$recipe[RecipeKeys.PORTIONS]} class="slider" />
+	<input type="range" min="0" max="auto" bind:value={$recipe[RecipeKeys.PORTIONS]} class="slider" />
 </Paper>
 
 <style>
