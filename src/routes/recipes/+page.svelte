@@ -32,11 +32,11 @@
 						<h1>{recipe.title}</h1>
 						<Checkbox />
 					</div>
-					<div class="tags">
+					<!-- <div class="tags">
 						{#each recipe.tags as tagName}
 							<Tag {tagName} />
 						{/each}
-					</div>
+					</div> -->
 				</button>
 			{/each}
 		</Paper>

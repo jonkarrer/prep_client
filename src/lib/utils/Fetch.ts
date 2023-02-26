@@ -10,23 +10,20 @@ export class Fetch {
 
 	constructor(private url: RequestInfo | URL) {
 		this.headers = new Headers({
-			Accept: '*/*',
-			// Authorization: "Bearer <TOKEN>",
-			'User-Agent': 'MyApp/1.0',
-			Referer: 'https://prep.com',
-			Cookie: 'session_id=123;'
+			Accept: '*/*'
 		});
 	}
 
 	async parseResponse(response: Response) {
 		const type = response.headers.get('Content-Type');
 
+		console.log('content type', type);
+
 		if (type === ContentType.JSON) {
 			return await response.json();
 		}
-		if (type === ContentType.TEXT) {
-			return await response.text();
-		}
+
+		return await response.text();
 	}
 	async post(data: string, contentType: ContentType) {
 		try {
@@ -40,11 +37,10 @@ export class Fetch {
 			if (!response.ok) {
 				throw new Error(await response.text());
 			}
-			const body = this.parseResponse(response);
 
-			console.log('Res Body', await response.json());
+			const responseBody = this.parseResponse(response);
 
-			return true;
+			return responseBody;
 		} catch (error) {
 			if (error instanceof SyntaxError) {
 				// Unexpected token < in JSON
@@ -52,7 +48,6 @@ export class Fetch {
 			} else {
 				console.error(error);
 			}
-			return false;
 		}
 	}
 }

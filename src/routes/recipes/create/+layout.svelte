@@ -13,7 +13,6 @@
 	import { nanoid } from 'nanoid/non-secure';
 	import { goto } from '$app/navigation';
 
-	export let data: PageData;
 	let allInputsAreValid = false;
 	const recipe: Recipe = {
 		id: nanoid(),
@@ -76,16 +75,15 @@
 			return;
 		}
 		console.log('FINAL RECIPE', $recipeStore);
-		const request = new Fetch('http://127.0.0.1/api/recipes/create');
-		const response = await request.post(
-			JSON.stringify({ userId: data.userId, recipe: $recipeStore }),
-			ContentType.JSON
-		);
+		const request = new Fetch('/controllers/recipes');
+		const response = await request.post(JSON.stringify({ recipe: $recipeStore }), ContentType.JSON);
 		if (!response) {
 			console.log('Recipe Not Created');
 			return;
 		} else {
-			goto('/recipes');
+			console.log('front end res', response);
+
+			// goto('/recipes');
 		}
 	}
 
