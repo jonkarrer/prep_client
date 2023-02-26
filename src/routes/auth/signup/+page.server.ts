@@ -50,6 +50,6 @@ export const actions: Actions = {
 			maxAge: 60 * 60 * 24 * 30
 		});
 
-		// throw redirect(302, '/recipes/create');
+		throw redirect(302, '/auth/login');
 	}
 };
