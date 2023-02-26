@@ -76,7 +76,8 @@
 		}
 		console.log('FINAL RECIPE', $recipeStore);
 		const request = new Fetch('/controllers/recipes');
-		const response = await request.post(JSON.stringify({ recipe: $recipeStore }), ContentType.JSON);
+		// TODO make a very opinionated model here. The db needs as much restriction as possible
+		const response = await request.post(JSON.stringify($recipeStore), ContentType.JSON);
 		if (!response) {
 			console.log('Recipe Not Created');
 			return;
