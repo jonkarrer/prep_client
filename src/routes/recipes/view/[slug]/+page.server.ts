@@ -1,11 +1,20 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Recipe } from '$lib/types/Recipe';
+import { Session } from '$lib/types/Session';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
+export const load: PageServerLoad = async ({ fetch, params, cookies }) => {
 	// Fetch single recipe using the slug as an id
 	const recipeId = params.slug;
-	const req = await fetch(`http://127.0.0.1/api/recipes/view/${recipeId}`);
+	const authToken = cookies.get(Session.TOKEN);
+
+	const req = await fetch(`http://127.0.0.1/api/recipes/view/${recipeId}`, {
+		method: 'GET',
+		headers: new Headers({
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${authToken}`
+		})
+	});
 	if (!req.ok) {
 		console.log(await req.text());
 		error(500);
