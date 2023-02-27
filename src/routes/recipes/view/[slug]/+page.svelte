@@ -11,6 +11,7 @@
 	import Tag from '$lib/components/common/Tag.svelte';
 	import Direction from '$lib/components/recipes/Direction.svelte';
 	import DeleteTwoTone from '$lib/assets/icons/DeleteTwoTone.svelte';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -21,7 +22,7 @@
 
 <Mobile>
 	<Button callback={() => console.log('Version')} text="Version" icon={CaretDownOutlined} />
-	<Button callback={() => console.log('Modify')} text="Modify" icon={EditTwoTone} />
+	<Button callback={() => goto(`/recipes/modify/${data.id}`)} text="Modify" icon={EditTwoTone} />
 	<Button callback={() => console.log('Delete')} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 

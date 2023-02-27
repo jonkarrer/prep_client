@@ -60,7 +60,7 @@
 	.heading {
 		display: grid;
 		grid-template-columns: 250px auto;
-		align-items: center;
+		align-items: first baseline;
 		justify-content: space-between;
 	}
 	h1 {

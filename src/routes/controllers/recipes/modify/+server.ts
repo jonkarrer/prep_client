@@ -1,7 +1,7 @@
 import { json, error, redirect } from '@sveltejs/kit';
 import { Session } from '$lib/types/Session';
 import { ContentType } from '$lib/types/Content';
-import type { RequestHandler } from './$types';
+import type { RequestHandler } from '../$types';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	// Get the auth token and recipe data
@@ -9,21 +9,21 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	if (!authToken || authToken?.length === 0) {
 		throw redirect(308, '/auth/login');
 	}
-	const newRecipeData = await request.json();
+	const modifiedRecipeData = await request.json();
 
 	// Send auth token and data to api
-	const postData = new Request('http://127.0.0.1/api/recipes/create', {
+	const postData = new Request(`http://127.0.0.1/api/recipes/modify/${modifiedRecipeData.id}`, {
 		method: 'POST',
 		headers: new Headers({
 			'Content-Type': ContentType.JSON,
 			Authorization: `Bearer ${authToken}`
 		}),
-		body: JSON.stringify({ recipe: newRecipeData })
+		body: JSON.stringify({ recipe: modifiedRecipeData })
 	});
 
 	const response = await fetch(postData);
 	if (!response.ok) {
-		error(404);
+		throw error(500, await response.text());
 	}
 
 	const message = await response.json();
