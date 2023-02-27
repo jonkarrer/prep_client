@@ -12,6 +12,7 @@
 	import Headline from '$lib/components/common/Headline.svelte';
 	import Tag from '$lib/components/common/Tag.svelte';
 	import Direction from '$lib/components/recipes/Direction.svelte';
+	import DeleteTwoTone from '$lib/assets/icons/DeleteTwoTone.svelte';
 
 	export let data: PageData;
 
@@ -23,7 +24,7 @@
 <Mobile>
 	<Button callback={() => console.log('Version')} text="Version" icon={CaretDownOutlined} />
 	<Button callback={() => console.log('Modify')} text="Modify" icon={EditTwoTone} />
-	<Button callback={() => console.log('Delete')} text="Delete" icon={CaretDownOutlined} />
+	<Button callback={() => console.log('Delete')} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 
 <PageTransition>

@@ -12,7 +12,7 @@ export const actions: Actions = {
 		const email = formData.get('email');
 		const password = formData.get('password');
 
-		// Send verification request
+		// Send signup request
 		const query = await fetch('http://127.0.0.1/api/user/signup', {
 			method: 'POST',
 			headers: {
