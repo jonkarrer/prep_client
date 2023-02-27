@@ -8,8 +8,7 @@
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
 	import type { Recipe } from '$lib/types/Recipe';
-	import { Fetch, ContentType } from '$lib/utils/Fetch';
-	import type { PageData } from './$types';
+	import { RecipeModel } from '$lib/models/RecipeModel';
 	import { nanoid } from 'nanoid/non-secure';
 	import { goto } from '$app/navigation';
 
@@ -74,17 +73,14 @@
 		if (!validateAllInputs()) {
 			return;
 		}
-		console.log('FINAL RECIPE', $recipeStore);
-		const request = new Fetch('/controllers/recipes');
-		// TODO make a very opinionated model here. The db needs as much restriction as possible
-		const response = await request.post(JSON.stringify($recipeStore), ContentType.JSON);
-		if (!response) {
-			console.log('Recipe Not Created');
+
+		const request = RecipeModel.createRecipe($recipeStore);
+
+		if (!request) {
+			alert('Oops! Something went wrong. Please try again.');
 			return;
 		} else {
-			console.log('front end res', response);
-
-			// goto('/recipes');
+			goto('/recipes');
 		}
 	}
 

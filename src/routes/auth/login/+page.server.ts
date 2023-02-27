@@ -4,7 +4,6 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
-	// Auth
 	default: async ({ cookies, request, fetch }) => {
 		// Get user inputs from form
 		const formData = await request.formData();

@@ -18,7 +18,6 @@
 
 		margin: 20px var(--gutter-mobile);
 	}
-
 	.drawer_icon {
 		display: flex;
 		align-items: center;

@@ -1,7 +1,6 @@
 import { json, error, redirect } from '@sveltejs/kit';
 import { Session } from '$lib/types/Session';
 import { ContentType } from '$lib/types/Content';
-
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {

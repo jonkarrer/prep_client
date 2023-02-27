@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Recipe } from '$lib/types/Recipe';
-
 	import PageTransition from '$lib/components/common/PageTransition.svelte';
 	import type { PageData } from './$types';
 	import Mobile from '$lib/components/headers/Mobile.svelte';
