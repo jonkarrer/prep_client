@@ -1,3 +1,9 @@
+<script>
+	export let toggle = false;
+	$: stroke = toggle ? 'var(--lighter)' : 'var(--contrast)';
+	$: bg = toggle ? 'var(--accent)' : 'var(--primary)';
+</script>
+
 <svg
 	width="100%"
 	height="100%"

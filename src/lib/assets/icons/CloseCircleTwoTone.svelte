@@ -1,3 +1,9 @@
+<script>
+	export let toggle = false;
+	$: stroke = toggle ? 'var(--lighter)' : 'var(--contrast)';
+	$: bg = toggle ? 'var(--accent)' : 'var(--primary)';
+</script>
+
 <svg width="100%" height="100%" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<g clip-path="url(#clip0_79_8)">
 		<path

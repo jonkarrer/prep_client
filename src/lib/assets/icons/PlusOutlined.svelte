@@ -1,3 +1,9 @@
+<script>
+	export let toggle = false;
+	$: stroke = toggle ? 'var(--lighter)' : 'var(--contrast)';
+	$: bg = toggle ? 'var(--accent)' : 'var(--primary)';
+</script>
+
 <svg width="100%" height="100%" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path
 		d="M41.9867 8.83929H48.0135C48.5492 8.83929 48.817 9.10714 48.817 9.64286V80.3571C48.817 80.8929 48.5492 81.1607 48.0135 81.1607H41.9867C41.451 81.1607 41.1831 80.8929 41.1831 80.3571V9.64286C41.1831 9.10714 41.451 8.83929 41.9867 8.83929Z"
