@@ -74,7 +74,7 @@
 			return;
 		}
 
-		const request = RecipeModel.createRecipe($recipeStore);
+		const request = RecipeModel.create($recipeStore);
 
 		if (!request) {
 			alert('Oops! Something went wrong. Please try again.');

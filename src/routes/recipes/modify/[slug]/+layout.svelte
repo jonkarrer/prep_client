@@ -69,7 +69,7 @@
 			return;
 		}
 
-		const request = RecipeModel.modifyRecipe($recipeStore);
+		const request = RecipeModel.modify($recipeStore);
 
 		if (!request) {
 			alert('Oops! Something went wrong. Please try again.');
@@ -79,29 +79,20 @@
 		}
 	}
 
-	function saveDraft() {
-		console.log('CURRENT DRAFT', $recipeStore);
-	}
-
-	function resetAllValues() {
-		const blankRecipe: Recipe = {
-			id: nanoid(),
-			title: '',
-			portions: 0,
-			tags: [],
-			directions: [],
-			ingredients: []
-		};
-		recipeStore.set(blankRecipe);
-
-		console.log('RESET ALL', $recipeStore);
+	function deleteRecipe() {
+		RecipeModel.delete($recipeStore);
+		goto('/recipes');
 	}
 </script>
 
 <Mobile>
 	<Button toggle={allInputsAreValid} callback={saveRecipe} text="Modify" icon={SaveTwoTone} />
-	<Button callback={resetAllValues} text="Reset" icon={ReloadOutlined} />
-	<Button callback={saveDraft} text="Draft" icon={BlocksOutlined} />
+	<Button
+		callback={() => goto(`/recipes/view/${$recipeStore.id}`)}
+		text="Cancel"
+		icon={ReloadOutlined}
+	/>
+	<Button callback={deleteRecipe} text="Delete" icon={BlocksOutlined} />
 </Mobile>
 
 <slot />

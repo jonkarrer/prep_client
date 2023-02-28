@@ -3,6 +3,12 @@ import { Session } from '$lib/types/Session';
 import type { PageServerLoad } from './$types';
 import type { Recipe } from '$lib/types/Recipe';
 
+type ApiErrorMessage = {
+	status: string;
+	message: string;
+	data: any;
+};
+
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	// Get user id from session
 	const authToken = cookies.get(Session.TOKEN);
@@ -21,7 +27,13 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 		})
 	});
 	if (!req.ok) {
-		throw error(500);
+		const response: ApiErrorMessage = await req.json();
+		if (response.status === 'redirect') {
+			cookies.delete(Session.TOKEN);
+			throw redirect(302, '/auth/login');
+		} else {
+			throw error(500, 'Failed to get Recipes');
+		}
 	}
 
 	type AllRecipesResponse = {

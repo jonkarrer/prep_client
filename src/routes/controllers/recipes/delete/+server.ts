@@ -9,16 +9,15 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	if (!authToken || authToken?.length === 0) {
 		throw redirect(308, '/auth/login');
 	}
-	const modifiedRecipeData = await request.json();
+	const targetRecipeData = await request.json();
 
 	// Send auth token and data to api
-	const postData = new Request(`http://127.0.0.1/api/recipes/modify/${modifiedRecipeData.id}`, {
-		method: 'PUT',
+	const postData = new Request(`http://127.0.0.1/api/recipes/delete/${targetRecipeData.id}`, {
+		method: 'DELETE',
 		headers: new Headers({
 			'Content-Type': ContentType.JSON,
 			Authorization: `Bearer ${authToken}`
-		}),
-		body: JSON.stringify({ recipe: modifiedRecipeData })
+		})
 	});
 
 	const response = await fetch(postData);

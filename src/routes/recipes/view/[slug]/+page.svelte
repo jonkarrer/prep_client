@@ -12,18 +12,24 @@
 	import Direction from '$lib/components/recipes/Direction.svelte';
 	import DeleteTwoTone from '$lib/assets/icons/DeleteTwoTone.svelte';
 	import { goto } from '$app/navigation';
+	import { RecipeModel } from '$lib/models/RecipeModel';
 
 	export let data: PageData;
 
 	const ingredients = data.ingredients;
 	const directions = data.directions;
 	const tags = data.tags;
+
+	function deleteRecipe() {
+		RecipeModel.delete(data);
+		goto('/recipes');
+	}
 </script>
 
 <Mobile>
 	<Button callback={() => console.log('Version')} text="Version" icon={CaretDownOutlined} />
 	<Button callback={() => goto(`/recipes/modify/${data.id}`)} text="Modify" icon={EditTwoTone} />
-	<Button callback={() => console.log('Delete')} text="Delete" icon={DeleteTwoTone} />
+	<Button callback={deleteRecipe} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 
 <PageTransition>
@@ -44,7 +50,7 @@
 
 			{#each ingredients as { quantity, unit, name }}
 				<div class="ingredient">
-					<Ingredient {quantity} {unit} {name} />
+					<Ingredient {quantity} {unit} {name} preventOverflow={false} />
 				</div>
 			{/each}
 		</Paper>
