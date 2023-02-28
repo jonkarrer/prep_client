@@ -1,3 +1,3 @@
-export enum Session {
-	TOKEN = "session_token"
+export enum SESSION {
+	TOKEN = 'session_token'
 }

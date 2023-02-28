@@ -11,6 +11,7 @@
 	import { RecipeModel } from '$lib/models/RecipeModel';
 	import { nanoid } from 'nanoid/non-secure';
 	import { goto } from '$app/navigation';
+	import RecipeController from '$lib/controllers/RecipeController';
 
 	let allInputsAreValid = false;
 	const recipe: Recipe = {
@@ -74,7 +75,7 @@
 			return;
 		}
 
-		const request = RecipeModel.create($recipeStore);
+		const request = RecipeController.create($recipeStore);
 
 		if (!request) {
 			alert('Oops! Something went wrong. Please try again.');

@@ -1,5 +1,5 @@
 import type { LoginResponse } from '$lib/types/User';
-import { Session } from '$lib/types/Session';
+import { SESSION } from '$lib/types/Enums';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -33,9 +33,9 @@ export const actions: Actions = {
 		const token: string = response.data.token;
 		console.log('Login Response', response, email, password);
 
-		cookies.delete(Session.TOKEN, { path: '/' });
+		cookies.delete(SESSION.TOKEN, { path: '/' });
 		// Set user's _id into the cookie
-		cookies.set(Session.TOKEN, token, {
+		cookies.set(SESSION.TOKEN, token, {
 			// send cookie for every page
 			path: '/',
 			// server side only cookie so you can't use `document.cookie`
