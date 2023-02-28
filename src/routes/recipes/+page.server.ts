@@ -12,11 +12,6 @@ type ApiErrorMessage = {
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	// Get user id from session
 	const authToken = cookies.get(Session.TOKEN);
-	if (!authToken || authToken?.length === 0) {
-		console.log('No Auth', authToken);
-
-		throw redirect(302, '/auth/login');
-	}
 
 	// Fetch all recipes
 	const req = await fetch('http://127.0.0.1/api/recipes', {
