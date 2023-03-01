@@ -8,10 +8,10 @@
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
 	import type { Recipe } from '$lib/types/Recipe';
-	import { RecipeModel } from '$lib/models/RecipeModel';
-	import { nanoid } from 'nanoid/non-secure';
 	import { goto } from '$app/navigation';
 	import type { PageData } from './$types';
+	import RecipeController from '$lib/controllers/RecipeController';
+	import { PROXY_ROUTES } from '$lib/types/Enums';
 
 	export let data: PageData;
 
@@ -69,7 +69,7 @@
 			return;
 		}
 
-		const request = RecipeModel.modify($recipeStore);
+		const request = RecipeController.proxy(PROXY_ROUTES.MODIFY_RECIPE, $recipeStore);
 
 		if (!request) {
 			alert('Oops! Something went wrong. Please try again.');
@@ -80,7 +80,7 @@
 	}
 
 	function deleteRecipe() {
-		RecipeModel.delete($recipeStore);
+		RecipeController.proxy(PROXY_ROUTES.DELETE_RECIPE, $recipeStore);
 		goto('/recipes');
 	}
 </script>

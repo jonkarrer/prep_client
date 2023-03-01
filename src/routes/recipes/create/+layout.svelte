@@ -8,10 +8,10 @@
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
 	import type { Recipe } from '$lib/types/Recipe';
-	import { RecipeModel } from '$lib/models/RecipeModel';
 	import { nanoid } from 'nanoid/non-secure';
 	import { goto } from '$app/navigation';
 	import RecipeController from '$lib/controllers/RecipeController';
+	import { PROXY_ROUTES } from '$lib/types/Enums';
 
 	let allInputsAreValid = false;
 	const recipe: Recipe = {
@@ -75,7 +75,7 @@
 			return;
 		}
 
-		const request = RecipeController.create($recipeStore);
+		const request = RecipeController.proxy(PROXY_ROUTES.CREATE_RECIPE, $recipeStore);
 
 		if (!request) {
 			alert('Oops! Something went wrong. Please try again.');

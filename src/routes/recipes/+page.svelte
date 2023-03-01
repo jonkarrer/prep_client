@@ -14,7 +14,6 @@
 
 	export let data: PageData;
 	const recipes: Array<Recipe> = data.recipes ?? [];
-	console.log('Cient side', recipes);
 </script>
 
 <Mobile>

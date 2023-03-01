@@ -1,17 +1,12 @@
 import type { Recipe } from '$lib/types/Recipe';
 import Send from '$lib/helpers/Send';
-import { CONTENT_TYPE } from '$lib/types/Enums';
-enum ROUTES {
-	ALL_RECIPES = 'http://127.0.0.1/api/recipes',
-	SINGLE_RECIPE = 'http://127.0.0.1/api/recipes/single/',
-	CREATE_RECIPE = '/proxy/recipes/create'
-}
+import { CONTENT_TYPE, PROXY_ROUTES } from '$lib/types/Enums';
 
 export default class RecipeController {
 	constructor(private authToken: string | undefined = undefined) {}
 
 	async getAllForUser(): Promise<Array<Recipe>> {
-		const request = new Request(ROUTES.ALL_RECIPES, {
+		const request = new Request('http://127.0.0.1/api/recipes', {
 			method: 'GET',
 			headers: {
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -24,7 +19,7 @@ export default class RecipeController {
 	}
 
 	async getSingle(recipeId: string): Promise<Recipe> {
-		const request = new Request(ROUTES.SINGLE_RECIPE + recipeId, {
+		const request = new Request('http://127.0.0.1/api/recipes/single/' + recipeId, {
 			method: 'GET',
 			headers: {
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -36,8 +31,50 @@ export default class RecipeController {
 		return data;
 	}
 
-	static async create(recipeData: Recipe) {
-		const request = new Request(ROUTES.CREATE_RECIPE, {
+	async create(recipeData: Recipe) {
+		// Send auth token and data to api
+		const request = new Request('http://127.0.0.1/api/recipes/create', {
+			method: 'POST',
+			headers: new Headers({
+				'Content-Type': CONTENT_TYPE.JSON,
+				Authorization: `Bearer ${this.authToken}`
+			}),
+			body: JSON.stringify({ recipe: recipeData })
+		});
+
+		const response = await Send(request);
+		return response;
+	}
+
+	async modify(recipeData: Recipe) {
+		const request = new Request(`http://127.0.0.1/api/recipes/modify/${recipeData.id}`, {
+			method: 'PUT',
+			headers: new Headers({
+				'Content-Type': CONTENT_TYPE.JSON,
+				Authorization: `Bearer ${this.authToken}`
+			}),
+			body: JSON.stringify({ recipe: recipeData })
+		});
+
+		const response = await Send(request);
+		return response;
+	}
+
+	async delete(recipeData: Recipe) {
+		const request = new Request(`http://127.0.0.1/api/recipes/delete/${recipeData.id}`, {
+			method: 'DELETE',
+			headers: new Headers({
+				'Content-Type': CONTENT_TYPE.JSON,
+				Authorization: `Bearer ${this.authToken}`
+			})
+		});
+
+		const response = await Send(request);
+		return response;
+	}
+
+	static async proxy(route: PROXY_ROUTES, recipeData: Recipe) {
+		const request = new Request(route, {
 			method: 'POST',
 			headers: { 'Content-Type': CONTENT_TYPE.JSON },
 			body: JSON.stringify(recipeData)

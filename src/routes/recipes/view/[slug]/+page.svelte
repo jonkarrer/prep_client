@@ -1,6 +1,5 @@
 <script lang="ts">
 	import PageTransition from '$lib/components/common/PageTransition.svelte';
-	import type { PageData } from './$types';
 	import Mobile from '$lib/components/headers/Mobile.svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import CaretDownOutlined from '$lib/assets/icons/CaretDownOutlined.svelte';
@@ -11,8 +10,10 @@
 	import Tag from '$lib/components/common/Tag.svelte';
 	import Direction from '$lib/components/recipes/Direction.svelte';
 	import DeleteTwoTone from '$lib/assets/icons/DeleteTwoTone.svelte';
+	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
-	import { RecipeModel } from '$lib/models/RecipeModel';
+	import RecipeController from '$lib/controllers/RecipeController';
+	import { PROXY_ROUTES } from '$lib/types/Enums';
 
 	export let data: PageData;
 
@@ -21,7 +22,7 @@
 	const tags = data.tags;
 
 	function deleteRecipe() {
-		RecipeModel.delete(data);
+		RecipeController.proxy(PROXY_ROUTES.DELETE_RECIPE, data);
 		goto('/recipes');
 	}
 </script>

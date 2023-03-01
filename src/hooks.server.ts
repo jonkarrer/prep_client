@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import { SESSION } from '$lib/types/Enums';
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 export const handle = (async ({ event, resolve }) => {
 	const authToken = event.cookies.get(SESSION.TOKEN);
