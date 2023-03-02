@@ -12,13 +12,13 @@
 	button {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 
-		width: 100%;
-		padding: 6px 9px;
+		padding: 7px 9px;
 
-		font-size: 12px;
+		font-size: var(--sm);
 		color: var(--contrast);
+		font-family: 500;
 
 		border-radius: var(--border-radius);
 		border: var(--solid-border);

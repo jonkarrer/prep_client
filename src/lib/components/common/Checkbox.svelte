@@ -1,10 +1,24 @@
-<div />
+<script>
+	export let toggle = false;
+</script>
+
+<button
+	class:toggle
+	on:click={(e) => {
+		e.stopPropagation();
+		toggle = !toggle;
+	}}
+/>
 
 <style>
-	div {
-		height: 12px;
-		width: 12px;
+	button {
+		height: 16px;
+		width: 16px;
 
 		border: var(--solid-border);
+	}
+
+	.toggle {
+		background: var(--accent);
 	}
 </style>

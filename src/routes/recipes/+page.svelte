@@ -11,9 +11,24 @@
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
 	import type { Recipe } from '$lib/types/Recipe';
 	import { goto } from '$app/navigation';
+	import ModifyTools from '$lib/components/common/ModifyTools.svelte';
+	import RecipeController from '$lib/controllers/RecipeController';
+	import { PROXY_ROUTES } from '$lib/types/Enums';
 
 	export let data: PageData;
-	const recipes: Array<Recipe> = data.recipes ?? [];
+	let recipes: Array<Recipe> = data.recipes ?? [];
+
+	function deleteRecipe(recipe: Recipe, key: number) {
+		recipes = recipes.filter((item, index) => {
+			if (index === key) return;
+			return item;
+		});
+		RecipeController.proxy(PROXY_ROUTES.DELETE_RECIPE, recipe);
+	}
+
+	function modifyRecipe(recipeId: string) {
+		goto(`/recipes/modify/${recipeId}`);
+	}
 </script>
 
 <Mobile>
@@ -25,11 +40,14 @@
 <PageTransition>
 	<main>
 		<Paper>
-			{#each recipes as recipe}
+			{#each recipes as recipe, i}
 				<button on:click={() => goto('/recipes/view/' + recipe.id)}>
 					<div class="heading">
 						<h1>{recipe.title}</h1>
-						<Checkbox />
+						<ModifyTools
+							deleteCallback={() => deleteRecipe(recipe, i)}
+							editCallback={() => modifyRecipe(recipe.id)}
+						/>
 					</div>
 					<div class="tags">
 						{#each recipe.tags as tagName}

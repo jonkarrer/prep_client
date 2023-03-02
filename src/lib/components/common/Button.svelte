@@ -1,16 +1,12 @@
 <script lang="ts">
-	export let callback: (
-		e: MouseEvent & {
-			currentTarget: EventTarget & HTMLButtonElement;
-		}
-	) => any;
+	export let callback: () => any;
 	export let text: string;
 	export let icon: any;
 	export let width: string = 'auto';
 	export let toggle = false;
 </script>
 
-<button class:toggle style:width on:click={(e) => callback(e)}>
+<button class:toggle style:width on:click={() => callback()}>
 	<div class="text">{text}</div>
 
 	<div class="icon"><svelte:component this={icon} bind:toggle /></div>

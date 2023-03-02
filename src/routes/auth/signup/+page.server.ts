@@ -2,6 +2,7 @@ import type { LoginResponse } from '$lib/types/User';
 import { SESSION } from '$lib/types/Enums';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
+import Send from '$lib/helpers/Send';
 
 export const actions: Actions = {
 	default: async ({ cookies, request, fetch }) => {
@@ -11,6 +12,7 @@ export const actions: Actions = {
 		const email = formData.get('email');
 		const password = formData.get('password');
 
+		// TODO Clean this up with the send util
 		// Send signup request
 		const query = await fetch('http://127.0.0.1/api/user/signup', {
 			method: 'POST',
