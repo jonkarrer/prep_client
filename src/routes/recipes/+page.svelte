@@ -8,7 +8,6 @@
 	import type { PageData } from './$types';
 	import PageTransition from '$lib/components/common/PageTransition.svelte';
 	import Paper from '$lib/components/common/Paper.svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
 	import type { Recipe } from '$lib/types/Recipe';
 	import { goto } from '$app/navigation';
 	import ModifyTools from '$lib/components/common/ModifyTools.svelte';
@@ -33,7 +32,7 @@
 
 <Mobile>
 	<Button callback={() => goto('/recipes/create')} text="Create" icon={PlusOutlined} />
-	<Button callback={(e) => console.log(e)} text="View" icon={CaretDownOutlined} />
+	<Button callback={() => console.log('view')} text="View" icon={CaretDownOutlined} />
 	<Search />
 </Mobile>
 
