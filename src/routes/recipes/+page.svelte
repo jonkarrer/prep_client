@@ -76,11 +76,12 @@
 	.heading {
 		display: grid;
 		grid-template-columns: 250px auto;
-		align-items: first baseline;
+		align-items: baseline;
 		justify-content: space-between;
 	}
 	h1 {
 		font-size: var(--xl);
+		color: var(--contrast);
 	}
 	.tags {
 		display: flex;

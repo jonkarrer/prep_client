@@ -16,7 +16,7 @@
 >
 	<g transform="matrix(1,0,0,1,-131.606,-74.8699)">
 		<g transform="matrix(1,0,0,1,-544.503,-2.02674)">
-			<rect x="676.109" y="183.478" width="48.782" height="262.66" style="fill:rgb(196,0,0);" />
+			<rect x="676.109" y="183.478" width="48.782" height="262.66" style="fill:rgb(132,0,0);" />
 		</g>
 		<g transform="matrix(1,0,0,1,-548.503,-2.02674)">
 			<path

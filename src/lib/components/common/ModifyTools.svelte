@@ -12,7 +12,7 @@
 
 <div class="wrapper">
 	{#if toggle}
-		<div transition:fly={{ delay: 150, duration: 250, x: 10, easing: quintOut }} class="tools">
+		<div transition:fly={{ delay: 150, duration: 400, x: 10, easing: quintOut }} class="tools">
 			<button
 				on:click={(e) => {
 					e.stopPropagation();
@@ -35,11 +35,17 @@
 	.wrapper {
 		display: flex;
 		align-items: baseline;
-		gap: 18px;
 	}
 	.tools {
 		display: flex;
-		gap: 18px;
-		height: 16px;
+		align-items: baseline;
+		height: 18px;
+	}
+	button {
+		height: 18px;
+		width: 18px;
+	}
+	button:last-child {
+		margin: 0 18px;
 	}
 </style>

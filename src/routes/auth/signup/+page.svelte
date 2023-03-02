@@ -12,31 +12,31 @@
 			<input name="email" type="text" placeholder="Email" required />
 			<input name="password" type="password" placeholder="Password" required />
 			<input name="confirmation" type="password" placeholder="Confirm Password" required />
+			<button type="submit" form="signup">Sign Up</button>
 		</form>
 
-		<div class="button-container">
-			<input type="submit" form="signup" value="Sign Up" />
-		</div>
 		<a class="register" href="/auth/login">Already a member?</a>
 
-		<footer>
+		<!-- <footer>
 			<p>&copy; Prep 2023</p>
 			<p>v0.2</p>
-		</footer>
+		</footer> -->
 	</main>
 </PageTransition>
 
 <style>
 	main {
+		display: grid;
+		place-content: center;
 		height: 100vh;
-		padding: 50% 24px;
 		background: var(--primary);
-		margin: auto;
 	}
-
+	form {
+		max-width: 375px;
+	}
 	.logo-container {
 		margin: 36px auto;
-		width: 130px;
+		width: 140px;
 	}
 
 	/* Style for the form inputs */
@@ -51,10 +51,9 @@
 	}
 
 	/* Style for the submit button */
-	input[type='submit'] {
-		padding: 12px 20px;
-		flex: 1;
-
+	button {
+		width: 100%;
+		padding: 12px;
 		background-color: var(--accent);
 		border-radius: var(--border-radius);
 		border: var(--accent) solid 1px;
@@ -63,13 +62,6 @@
 		font-size: var(--rg);
 
 		cursor: pointer;
-	}
-
-	.button-container {
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		gap: 16px;
 	}
 
 	.register {
@@ -85,6 +77,7 @@
 	footer {
 		position: absolute;
 		bottom: 0;
+		bottom: env(safe-area-inset-bottom);
 		left: 0;
 		width: 100%;
 
