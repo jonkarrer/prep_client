@@ -18,7 +18,7 @@
 		color: var(--accent);
 	}
 	.preventOverflow {
-		max-width: 55vw;
+		max-width: 150px;
 		white-space: nowrap;
 		overflow: hidden !important;
 		text-overflow: ellipsis;

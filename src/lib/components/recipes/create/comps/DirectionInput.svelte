@@ -49,7 +49,6 @@
 	</div>
 
 	<div
-		placeholder="Describe Step"
 		class:valid
 		class="content"
 		bind:textContent={directionValueBinding}

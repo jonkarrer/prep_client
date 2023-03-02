@@ -14,10 +14,6 @@
 		</form>
 
 		<a class="register" href="/auth/signup">Need to register?</a>
-		<!-- <footer>
-			<p>&copy; Prep 2023</p>
-			<p>v0.2</p>
-		</footer> -->
 	</main>
 </PageTransition>
 
@@ -36,7 +32,6 @@
 		width: 140px;
 	}
 
-	/* Style for the form inputs */
 	input[type='text'],
 	input[type='password'] {
 		width: 100%;
@@ -47,7 +42,6 @@
 		border: var(--solid-border);
 	}
 
-	/* Style for the submit button */
 	button {
 		width: 100%;
 		padding: 12px;
@@ -68,21 +62,5 @@
 		text-align: center;
 		color: var(--contrast);
 		text-decoration: underline;
-	}
-
-	/* Style for the link to the forgot password page */
-	footer {
-		position: absolute;
-		bottom: 0;
-		bottom: env(safe-area-inset-bottom);
-		left: 0;
-		width: 100%;
-
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 12px;
-
-		padding: 16px 24px;
 	}
 </style>
