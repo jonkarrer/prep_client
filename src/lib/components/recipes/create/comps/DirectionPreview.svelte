@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ModifyTools from '$lib/components/common/ModifyTools.svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -28,13 +27,22 @@
 			return item;
 		});
 
-		// directionValueBinding = '';
 		isActive = false;
 	}
 
 	function cancelChanges() {
+		console.log('array', $recipe[RecipeKeys.DIRECTIONS]);
+		console.log('order, direction', order, direction);
+
 		directionValueBinding = direction;
 		isActive = false;
+	}
+
+	function deleteDirection() {
+		$recipe[RecipeKeys.DIRECTIONS] = $recipe[RecipeKeys.DIRECTIONS].filter((item, index) => {
+			if (index === order) return;
+			return item;
+		});
 	}
 
 	$: if (directionValueBinding.length < 2) {
@@ -53,9 +61,7 @@
 			<p class="text preventOverflow">{direction}</p>
 		{/if}
 		{#if isActive}
-			<div contenteditable class="text editable" bind:textContent={directionValueBinding}>
-				{direction}
-			</div>
+			<div contenteditable class="text editable" bind:textContent={directionValueBinding} />
 		{/if}
 	</div>
 
@@ -71,7 +77,7 @@
 		width="90px"
 	/>
 	<Button callback={cancelChanges} text="Cancel" icon={CloseCircleTwoTone} width="90px" />
-	<Button callback={() => console.log('reset')} text="Delete" icon={DeleteTwoTone} width="90px" />
+	<Button callback={deleteDirection} text="Delete" icon={DeleteTwoTone} width="90px" />
 </div>
 
 <style>
@@ -93,12 +99,13 @@
 		line-height: 1.5;
 	}
 	.editable {
+		width: 100%;
 		border: var(--dashed-border);
 		border-radius: var(--border-radius);
-		padding: 0 3px;
+		padding: 4px 8px;
 	}
 	.editable:focus {
-		border: var(--outline);
+		border: var(--solid-border);
 
 		outline: none;
 	}

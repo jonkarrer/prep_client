@@ -12,9 +12,10 @@
 
 <Paper>
 	<Headline title="Directions" />
-	{#each $recipe[RecipeKeys.DIRECTIONS] as item, i}
-		<DirectionPreview direction={item} order={i} />
-	{/each}
-
+	{#key $recipe[RecipeKeys.DIRECTIONS]}
+		{#each $recipe[RecipeKeys.DIRECTIONS] as item, i}
+			<DirectionPreview direction={item} order={i} />
+		{/each}
+	{/key}
 	<DirectionInput nextOrder={$recipe[RecipeKeys.DIRECTIONS].length + 1} />
 </Paper>
