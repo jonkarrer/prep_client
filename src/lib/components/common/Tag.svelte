@@ -12,7 +12,8 @@
 
 		padding: 5px 9px;
 
-		font-size: var(--sm);
+		font-size: var(--xs);
+		font-weight: 600;
 		color: var(--contrast);
 
 		border: var(--solid-border);

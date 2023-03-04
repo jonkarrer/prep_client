@@ -28,7 +28,7 @@
 </script>
 
 <Mobile>
-	<Button callback={() => console.log('Version')} text="Version" icon={CaretDownOutlined} />
+	<Button callback={() => console.log('Version')} text="Scale" icon={CaretDownOutlined} />
 	<Button callback={() => goto(`/recipes/modify/${data.id}`)} text="Modify" icon={EditTwoTone} />
 	<Button callback={deleteRecipe} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
@@ -89,7 +89,7 @@
 		text-overflow: ellipsis;
 	}
 	h1 {
-		font-size: var(--xxl);
+		font-size: var(--3xl);
 		color: var(--contrast);
 	}
 

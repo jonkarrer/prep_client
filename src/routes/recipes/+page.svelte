@@ -79,6 +79,7 @@
 		align-items: baseline;
 		justify-content: space-between;
 	}
+
 	h1 {
 		font-size: var(--xl);
 		color: var(--contrast);

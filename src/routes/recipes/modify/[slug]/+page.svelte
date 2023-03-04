@@ -2,7 +2,6 @@
 	import Title from '$lib/components/recipes/create/Title.svelte';
 	import Ingredients from '$lib/components/recipes/create/Ingredients.svelte';
 	import Directions from '$lib/components/recipes/create/Directions.svelte';
-	import Tags from '$lib/components/recipes/create/Tags.svelte';
 	import Portions from '$lib/components/recipes/create/Portions.svelte';
 </script>
 
@@ -12,8 +11,6 @@
 	<Ingredients />
 
 	<Directions />
-
-	<Tags />
 
 	<Portions />
 </main>

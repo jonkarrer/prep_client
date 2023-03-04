@@ -86,7 +86,7 @@
 </script>
 
 <Mobile>
-	<Button toggle={allInputsAreValid} callback={saveRecipe} text="Modify" icon={SaveTwoTone} />
+	<Button toggle={allInputsAreValid} callback={saveRecipe} text="Save" icon={SaveTwoTone} />
 	<Button
 		callback={() => goto(`/recipes/view/${$recipeStore.id}`)}
 		text="Cancel"
