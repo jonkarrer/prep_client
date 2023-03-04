@@ -49,9 +49,9 @@
 						/>
 					</div>
 					<div class="tags">
-						{#each recipe.tags as tagName}
-							<Tag {tagName} />
-						{/each}
+						<Tag tagName={`${recipe.portions} Portions`} />
+						<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
+						<Tag tagName={`${recipe.directions.length} Steps`} />
 					</div>
 				</button>
 			{/each}

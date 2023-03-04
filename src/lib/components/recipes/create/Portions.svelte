@@ -17,14 +17,14 @@
 		class:active={$recipe[RecipeKeys.PORTIONS] > 0}
 	/>
 
-	<input type="range" min="0" max="auto" bind:value={$recipe[RecipeKeys.PORTIONS]} class="slider" />
+	<!-- <input type="range" min="0" max="auto" bind:value={$recipe[RecipeKeys.PORTIONS]} class="slider" /> -->
 </Paper>
 
 <style>
 	.root {
 		text-align: center;
-		font-size: var(--xl);
-		font-weight: 600;
+		font-size: 24px;
+		font-weight: 500;
 	}
 	.active {
 		color: var(--accent);
