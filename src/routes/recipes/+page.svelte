@@ -75,7 +75,7 @@
 	}
 	.heading {
 		display: grid;
-		grid-template-columns: 250px auto;
+		grid-template-columns: auto auto;
 		align-items: baseline;
 		justify-content: space-between;
 	}
@@ -83,6 +83,7 @@
 	h1 {
 		font-size: var(--xl);
 		color: var(--contrast);
+		max-width: 250px;
 	}
 	.tags {
 		display: flex;

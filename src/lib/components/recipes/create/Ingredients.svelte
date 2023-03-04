@@ -13,9 +13,11 @@
 <Paper>
 	<Headline title="Ingredients" />
 
-	{#each $recipe[RecipeKeys.INGREDIENTS] as item}
-		<IngredientPreview quantity={item.quantity} unit={item.unit} name={item.name} />
-	{/each}
+	{#key $recipe[RecipeKeys.INGREDIENTS]}
+		{#each $recipe[RecipeKeys.INGREDIENTS] as item}
+			<IngredientPreview quantity={item.quantity} unit={item.unit} name={item.name} id={item.id} />
+		{/each}
+	{/key}
 
 	<IngredientInput />
 </Paper>

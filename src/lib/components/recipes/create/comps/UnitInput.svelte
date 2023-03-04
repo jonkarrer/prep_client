@@ -5,7 +5,7 @@
 
 	// Regex for the unit of measure.
 	let unitOfMeasure =
-		/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice|clove|can|bunch))+\s*)$/gi;
+		/^(?:(?:\s*\s*(?:tsp|teaspoon|tbsp|tablespoon|cup|cups|ounce|oz|each|whole|half|quarter|pint|pt|quart|qt|gallon|lbs|pounds|kg|kilogram|gram|ml|milliliter|liter|cm|centimeter|mm|milometer|in|inch|ft|foot|large|lg|sm|small|md|medium|pieces|chunks|slice|clove|can|bunch))+\s*)$/gi;
 
 	$: if (unitValueBinding.length === 0 || !unitOfMeasure.test(unitValueBinding)) {
 		valid = false;
