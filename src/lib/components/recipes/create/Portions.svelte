@@ -13,8 +13,9 @@
 	<input
 		type="number"
 		bind:value={$recipe[RecipeKeys.PORTIONS]}
+		placeholder="00"
 		class="root"
-		class:active={$recipe[RecipeKeys.PORTIONS] > 0}
+		class:active={$recipe[RecipeKeys.PORTIONS] != null}
 	/>
 </Paper>
 

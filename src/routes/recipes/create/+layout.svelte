@@ -17,8 +17,7 @@
 	const recipe: Recipe = {
 		id: nanoid(),
 		title: '',
-		portions: 0,
-		tags: [],
+		portions: null,
 		directions: [],
 		ingredients: []
 	};
@@ -40,7 +39,7 @@
 				allInputsAreValid = false;
 				return;
 			}
-			if ($recipeStore.portions === 0) {
+			if ($recipeStore.portions === null) {
 				allInputsAreValid = false;
 				return;
 			}
@@ -94,7 +93,6 @@
 			id: nanoid(),
 			title: '',
 			portions: 0,
-			tags: [],
 			directions: [],
 			ingredients: []
 		};

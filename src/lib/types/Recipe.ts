@@ -5,15 +5,13 @@ export enum RecipeKeys {
 	TITLE = 'title',
 	PORTIONS = 'portions',
 	INGREDIENTS = 'ingredients',
-	DIRECTIONS = 'directions',
-	TAGS = 'tags'
+	DIRECTIONS = 'directions'
 }
 
 export type Recipe = {
 	id: string;
 	title: string;
-	portions: number;
+	portions: number | null;
 	ingredients: Array<Ingredient>;
 	directions: Array<string>;
-	tags: Array<string>;
 };
