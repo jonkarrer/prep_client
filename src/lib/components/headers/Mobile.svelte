@@ -1,140 +1,41 @@
 <script lang="ts">
 	import DrawerIcon from '$lib/assets/icons/DrawerIcon.svelte';
-	import ExperimentTwoTone from '$lib/assets/icons/ExperimentTwoTone.svelte';
-	import EyeTwoTone from '$lib/assets/icons/EyeTwoTone.svelte';
-	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
-	import SearchOutlined from '$lib/assets/icons/SearchOutlined.svelte';
-	import UserOutlined from '$lib/assets/icons/UserOutlined.svelte';
-	import { fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
-	let toggle = false;
+	let isNavDrawerOpen: Writable<boolean> = getContext<Writable<boolean>>('isNavDrawerOpen');
 </script>
 
 <header>
-	<button class="drawer_icon" on:click={() => (toggle = !toggle)}>
+	<button class="drawer_icon" on:click={() => ($isNavDrawerOpen = !$isNavDrawerOpen)}>
 		<DrawerIcon />
 	</button>
 
 	<slot />
 </header>
-{#if toggle}
-	<nav class="drawer" transition:fly={{ delay: 50, duration: 400, x: -10, easing: quintOut }}>
-		<button class="drawer_icon" on:click={() => (toggle = !toggle)}>
-			<DrawerIcon />
-		</button>
-		<li class="nav_item">
-			<button class="group">
-				<div class="icon"><ExperimentTwoTone /></div>
-				<div class="text">Recipes</div>
-			</button>
-			<menu>
-				<li>
-					<a href="/recipes">
-						<div class="icon"><EyeTwoTone /></div>
-						View All
-					</a>
-				</li>
-				<li>
-					<a href="/recipes/create">
-						<div class="icon"><PlusOutlined /></div>
-						Create New
-					</a>
-				</li>
-				<li>
-					<a href="/recipes/create">
-						<div class="icon"><SearchOutlined /></div>
-						Find
-					</a>
-				</li>
-			</menu>
-		</li>
-		<button class="user_profile group">
-			<div class="icon"><UserOutlined /></div>
-			<div class="text">User Profile</div>
-		</button>
-	</nav>
-{/if}
 
 <style>
 	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+
 		display: flex;
 		align-items: center;
 		gap: 16px;
 
-		margin: 20px var(--gutter-mobile);
+		width: 100%;
+		padding: 20px var(--gutter-mobile);
+
+		background-color: var(--primary);
+		border-bottom: var(--solid-border);
+
+		z-index: 1000;
 	}
 	.drawer_icon {
 		display: flex;
 		align-items: center;
 		flex: 1;
-	}
-	.drawer {
-		position: fixed;
-		top: 0;
-		left: 0;
-
-		background-color: var(--primary);
-		padding-left: var(--gutter-mobile);
-		padding-right: 35px;
-		/* TODO Fix the hamburger layover */
-		padding-top: 23.5px;
-		height: 100vh;
-
-		border-right: var(--solid-border);
-	}
-	.nav_item {
-		margin: 52px 0;
-	}
-	menu {
-		border-left: var(--solid-border);
-		margin-top: 10px;
-		padding: 10px 0;
-		margin-left: 10px;
-	}
-	menu li {
-		margin-left: 10px;
-		margin-top: 15px;
-	}
-	menu li:first-child {
-		margin-top: 0;
-	}
-	.group {
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-
-		padding: 7px 9px;
-		width: 155px;
-
-		font-size: var(--sm);
-		color: var(--contrast);
-
-		border-radius: var(--border-radius);
-		border: var(--solid-border);
-
-		cursor: pointer;
-	}
-	a {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-size: var(--sm);
-	}
-
-	.text {
-		margin-left: 9px;
-		color: var(--contrast);
-	}
-
-	.icon {
-		height: 14px;
-		width: 14px;
-		min-width: 11px;
-		min-height: 11px;
-	}
-	.user_profile {
-		position: absolute;
-		bottom: 20px;
+		z-index: 1000;
 	}
 </style>
