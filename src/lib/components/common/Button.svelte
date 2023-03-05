@@ -22,7 +22,6 @@
 
 		font-size: var(--sm);
 		color: var(--contrast);
-		font-family: 600;
 
 		border-radius: var(--border-radius);
 		border: var(--solid-border);

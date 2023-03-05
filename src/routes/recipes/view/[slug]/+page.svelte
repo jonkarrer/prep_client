@@ -72,6 +72,7 @@
 <style>
 	main {
 		display: grid;
+		margin-bottom: var(--moat-mobile);
 	}
 	.recipe-name {
 		margin: 20px 0;
@@ -95,7 +96,7 @@
 		display: flex;
 		gap: 10px;
 
-		margin-bottom: 32px;
+		margin-bottom: 24px;
 	}
 	.ingredient,
 	.direction {
