@@ -18,7 +18,7 @@
 		align-items: center;
 		justify-content: center;
 
-		padding: 7px 9px;
+		padding: 6px 9px;
 
 		font-size: var(--sm);
 		color: var(--contrast);

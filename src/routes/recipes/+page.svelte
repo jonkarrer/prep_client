@@ -62,7 +62,7 @@
 <style>
 	button {
 		display: grid;
-		gap: 16px;
+		gap: 24px;
 
 		width: 100%;
 		padding-bottom: 24px;

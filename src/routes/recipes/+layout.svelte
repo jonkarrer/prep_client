@@ -26,7 +26,7 @@
 		};
 	}
 
-	afterNavigate(() => ($isNavDrawerOpen = !$isNavDrawerOpen));
+	afterNavigate(() => ($isNavDrawerOpen = false));
 </script>
 
 <main>
