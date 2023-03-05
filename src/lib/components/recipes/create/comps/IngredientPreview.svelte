@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Button from '$lib/components/common/Button.svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
-	import IngredientPreview from '$lib/components/recipes/Ingredient.svelte';
 	import NameInput from './NameInput.svelte';
 	import QuantityInput from './QuantityInput.svelte';
 	import UnitInput from './UnitInput.svelte';
@@ -83,7 +81,7 @@
 		isActive = false;
 	}
 
-	function deleteDirection() {
+	function deleteIngredients() {
 		$recipe[RecipeKeys.INGREDIENTS] = $recipe[RecipeKeys.INGREDIENTS].filter((item) => {
 			if (item.id === id) return;
 			return item;
@@ -111,7 +109,7 @@
 
 <button class="preview" on:click={activateEditMode}>
 	<div class="heading">
-		<span class="text preventOverflow" class:nuetralize={isActive}>
+		<span class="text" class:nuetralize={isActive}>
 			<strong>{quantity}</strong> <strong>{unit}</strong>,
 			<span>{name}</span>
 		</span>
@@ -147,7 +145,7 @@
 		width="90px"
 	/>
 	<Button callback={cancelChanges} text="Cancel" icon={CloseCircleTwoTone} width="90px" />
-	<Button callback={deleteDirection} text="Delete" icon={DeleteTwoTone} width="90px" />
+	<Button callback={deleteIngredients} text="Delete" icon={DeleteTwoTone} width="90px" />
 </div>
 
 <style>
@@ -180,16 +178,14 @@
 	}
 	.text {
 		text-align: left;
-	}
-	strong {
-		font-weight: 600;
-		color: var(--accent);
-	}
-	.preventOverflow {
 		max-width: 150px;
 		white-space: nowrap;
 		overflow: hidden !important;
 		text-overflow: ellipsis;
+	}
+	strong {
+		font-weight: 600;
+		color: var(--accent);
 	}
 	.nuetralize,
 	.nuetralize * {

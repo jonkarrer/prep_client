@@ -19,7 +19,6 @@
 
 	const ingredients = data.ingredients;
 	const directions = data.directions;
-	const tags = data.tags;
 
 	function deleteRecipe() {
 		RecipeController.proxy(PROXY_ROUTES.DELETE_RECIPE, data);
@@ -92,19 +91,16 @@
 		font-size: var(--3xl);
 		color: var(--contrast);
 	}
-
 	.stats {
 		display: flex;
 		gap: 10px;
 
 		margin-bottom: 32px;
 	}
-
 	.ingredient,
 	.direction {
 		margin-top: 15px;
 	}
-
 	.directions_wrapper {
 		margin-top: 32px;
 	}
