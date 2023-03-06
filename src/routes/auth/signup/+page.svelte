@@ -1,23 +1,20 @@
 <script lang="ts">
 	import LogoTypeface from '$lib/assets/icons/LogoTypeface.svelte';
-	import PageTransition from '$lib/components/common/PageTransition.svelte';
 </script>
 
-<PageTransition>
-	<main>
-		<div class="logo-container"><LogoTypeface /></div>
+<main>
+	<div class="logo-container"><LogoTypeface /></div>
 
-		<form id="signup" method="POST">
-			<input name="name" type="text" placeholder="Username" required />
-			<input name="email" type="text" placeholder="Email" required />
-			<input name="password" type="password" placeholder="Password" required />
-			<input name="confirmation" type="password" placeholder="Confirm Password" required />
-			<button type="submit" form="signup">Sign Up</button>
-		</form>
+	<form id="signup" method="POST">
+		<input name="name" type="text" placeholder="Username" required />
+		<input name="email" type="text" placeholder="Email" required />
+		<input name="password" type="password" placeholder="Password" required />
+		<input name="confirmation" type="password" placeholder="Confirm Password" required />
+		<button type="submit" form="signup">Sign Up</button>
+	</form>
 
-		<a class="register" href="/auth/login">Already a member?</a>
-	</main>
-</PageTransition>
+	<a class="register" href="/auth/login">Already a member?</a>
+</main>
 
 <style>
 	main {

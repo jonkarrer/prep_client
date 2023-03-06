@@ -1,5 +1,4 @@
 <script lang="ts">
-	import PageTransition from '$lib/components/common/PageTransition.svelte';
 	import Mobile from '$lib/components/headers/Mobile.svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import CaretDownOutlined from '$lib/assets/icons/CaretDownOutlined.svelte';
@@ -32,50 +31,47 @@
 	<Button callback={deleteRecipe} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 
-<PageTransition>
-	<main>
-		<div class="recipe-name">
-			<h3 class="outline">recipes/{data.title.toLowerCase()}</h3>
-			<h1>{data.title}</h1>
-		</div>
+<main>
+	<div class="recipe-name">
+		<h3 class="outline">recipes/{data.title.toLowerCase()}</h3>
+		<h1>{data.title}</h1>
+	</div>
 
-		<div class="stats">
-			<Tag tagName={`${data.portions} Portions`} />
-			<Tag tagName={`${ingredients.length} Ingredients`} />
-			<Tag tagName={`${directions.length} Steps`} />
-		</div>
+	<div class="stats">
+		<Tag tagName={`${data.portions} Portions`} />
+		<Tag tagName={`${ingredients.length} Ingredients`} />
+		<Tag tagName={`${directions.length} Steps`} />
+	</div>
 
+	<Paper>
+		<Headline title={'Ingredients'} />
+
+		{#each ingredients as { quantity, unit, name }}
+			<div class="ingredient">
+				<Ingredient {quantity} {unit} {name} preventOverflow={false} />
+			</div>
+		{/each}
+	</Paper>
+
+	<div class="directions_wrapper">
 		<Paper>
-			<Headline title={'Ingredients'} />
+			<Headline title={'Directions'} />
 
-			{#each ingredients as { quantity, unit, name }}
-				<div class="ingredient">
-					<Ingredient {quantity} {unit} {name} preventOverflow={false} />
+			{#each directions as direction, i}
+				<div class="direction">
+					<Direction order={i} {direction} preventOverflow={false} />
 				</div>
 			{/each}
 		</Paper>
-
-		<div class="directions_wrapper">
-			<Paper>
-				<Headline title={'Directions'} />
-
-				{#each directions as direction, i}
-					<div class="direction">
-						<Direction order={i} {direction} preventOverflow={false} />
-					</div>
-				{/each}
-			</Paper>
-		</div>
-	</main>
-</PageTransition>
+	</div>
+</main>
 
 <style>
 	main {
 		display: grid;
-		margin-bottom: var(--moat-mobile);
 	}
 	.recipe-name {
-		margin: 20px 0;
+		margin-bottom: 20px;
 	}
 	.outline {
 		font-size: var(--sm);

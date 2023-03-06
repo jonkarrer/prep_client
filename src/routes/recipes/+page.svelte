@@ -6,7 +6,6 @@
 	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
 	import CaretDownOutlined from '$lib/assets/icons/CaretDownOutlined.svelte';
 	import type { PageData } from './$types';
-	import PageTransition from '$lib/components/common/PageTransition.svelte';
 	import Paper from '$lib/components/common/Paper.svelte';
 	import type { Recipe } from '$lib/types/Recipe';
 	import { goto } from '$app/navigation';
@@ -36,28 +35,26 @@
 	<Search />
 </Mobile>
 
-<PageTransition>
-	<main>
-		<Paper>
-			{#each recipes as recipe, i}
-				<button on:click={() => goto('/recipes/view/' + recipe.id)}>
-					<div class="heading">
-						<h1>{recipe.title}</h1>
-						<ModifyTools
-							deleteCallback={() => deleteRecipe(recipe, i)}
-							editCallback={() => modifyRecipe(recipe.id)}
-						/>
-					</div>
-					<div class="tags">
-						<Tag tagName={`${recipe.portions} Portions`} />
-						<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
-						<Tag tagName={`${recipe.directions.length} Steps`} />
-					</div>
-				</button>
-			{/each}
-		</Paper>
-	</main>
-</PageTransition>
+<main>
+	<Paper>
+		{#each recipes as recipe, i}
+			<button on:click={() => goto('/recipes/view/' + recipe.id)}>
+				<div class="heading">
+					<h1>{recipe.title}</h1>
+					<ModifyTools
+						deleteCallback={() => deleteRecipe(recipe, i)}
+						editCallback={() => modifyRecipe(recipe.id)}
+					/>
+				</div>
+				<div class="tags">
+					<Tag tagName={`${recipe.portions} Portions`} />
+					<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
+					<Tag tagName={`${recipe.directions.length} Steps`} />
+				</div>
+			</button>
+		{/each}
+	</Paper>
+</main>
 
 <style>
 	button {
