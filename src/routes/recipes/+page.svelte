@@ -13,6 +13,7 @@
 	import RecipeController from '$lib/controllers/RecipeController';
 	import { PROXY_ROUTES } from '$lib/types/Enums';
 	import { replaceSpecialChars } from '$lib/utils/replaceSpecialChars';
+	import SearchOutlined from '$lib/assets/icons/SearchOutlined.svelte';
 
 	export let data: PageData;
 	let recipes: Array<Recipe> = data.recipes ?? [];
@@ -32,7 +33,7 @@
 
 <Mobile>
 	<Button callback={() => goto('/recipes/create')} text="Create" icon={PlusOutlined} />
-	<Search />
+	<Button callback={() => console.log('search')} text="Search" icon={SearchOutlined} />
 </Mobile>
 
 <main>
