@@ -2,7 +2,8 @@
 	export let toggle = false;
 </script>
 
-<button
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
 	class:toggle
 	on:click={(e) => {
 		e.stopPropagation();
@@ -11,7 +12,7 @@
 />
 
 <style>
-	button {
+	div {
 		height: 18px;
 		width: 18px;
 
