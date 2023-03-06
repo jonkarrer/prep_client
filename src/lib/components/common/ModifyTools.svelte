@@ -12,9 +12,10 @@
 
 <div class="wrapper">
 	{#if toggle}
-		<div transition:fly={{ delay: 50, duration: 400, x: 10, easing: quintOut }} class="tools">
+		<div transition:fly={{ delay: 50, duration: 150, x: 10, easing: quintOut }} class="tools">
 			<button
 				on:click={(e) => {
+					toggle = !toggle;
 					e.stopPropagation();
 					deleteCallback();
 				}}><DeleteTwoTone /></button
@@ -22,6 +23,7 @@
 
 			<button
 				on:click={(e) => {
+					toggle = !toggle;
 					e.stopPropagation();
 					editCallback();
 				}}><EditTwoTone /></button

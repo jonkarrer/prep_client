@@ -106,8 +106,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-
-<button class="preview" on:click={activateEditMode}>
+<div class="preview" on:click={activateEditMode}>
 	<div class="heading">
 		<span class="text" class:nuetralize={isActive}>
 			<strong>{quantity}</strong> <strong>{unit}</strong>,
@@ -134,7 +133,7 @@
 			bind:valid={nameValidState}
 		/>
 	</div>
-</button>
+</div>
 
 <div style:display={isActive ? 'flex' : 'none'} class="action_buttons">
 	<Button

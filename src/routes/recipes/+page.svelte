@@ -41,6 +41,7 @@
 			<button on:click={() => goto('/recipes/view/' + recipe.id)}>
 				<div class="heading">
 					<h1>{recipe.title}</h1>
+
 					<ModifyTools
 						deleteCallback={() => deleteRecipe(recipe, i)}
 						editCallback={() => modifyRecipe(recipe.id)}
