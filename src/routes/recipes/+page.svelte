@@ -12,6 +12,7 @@
 	import ModifyTools from '$lib/components/common/ModifyTools.svelte';
 	import RecipeController from '$lib/controllers/RecipeController';
 	import { PROXY_ROUTES } from '$lib/types/Enums';
+	import { replaceSpecialChars } from '$lib/utils/replaceSpecialChars';
 
 	export let data: PageData;
 	let recipes: Array<Recipe> = data.recipes ?? [];
@@ -31,7 +32,6 @@
 
 <Mobile>
 	<Button callback={() => goto('/recipes/create')} text="Create" icon={PlusOutlined} />
-	<Button callback={() => console.log('view')} text="View" icon={CaretDownOutlined} />
 	<Search />
 </Mobile>
 
@@ -40,15 +40,16 @@
 		{#each recipes as recipe, i}
 			<button on:click={() => goto('/recipes/view/' + recipe.id)}>
 				<div class="heading">
-					<h1>{recipe.title}</h1>
-
+					<h1>{replaceSpecialChars(recipe.title)}</h1>
 					<ModifyTools
 						deleteCallback={() => deleteRecipe(recipe, i)}
 						editCallback={() => modifyRecipe(recipe.id)}
 					/>
 				</div>
 				<div class="tags">
-					<Tag tagName={`${recipe.portions} Portions`} />
+					{#if recipe.portions !== null}
+						<Tag tagName={`${recipe.portions} Portions`} />
+					{/if}
 					<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
 					<Tag tagName={`${recipe.directions.length} Steps`} />
 				</div>

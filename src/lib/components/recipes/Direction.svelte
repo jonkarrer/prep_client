@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { replaceSpecialChars } from '$lib/utils/replaceSpecialChars';
+
 	export let direction: string;
 	export let order: number;
 	export let preventOverflow = true;
@@ -8,7 +10,7 @@
 	<div class="order">
 		{(order + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
 	</div>
-	<p class="text" class:preventOverflow>{direction}</p>
+	<p class="text" class:preventOverflow>{replaceSpecialChars(direction)}</p>
 </div>
 
 <style>

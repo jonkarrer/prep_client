@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { replaceSpecialChars } from '$lib/utils/replaceSpecialChars';
+
 	export let name: string;
 	export let quantity: string;
 	export let unit: string;
@@ -6,7 +8,7 @@
 </script>
 
 <div class="text" class:preventOverflow>
-	<strong>{quantity}</strong> <strong>{unit}</strong>, {name}
+	<strong>{quantity}</strong> <strong>{unit}</strong>, {replaceSpecialChars(name)}
 </div>
 
 <style>

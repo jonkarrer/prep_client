@@ -39,11 +39,6 @@
 				allInputsAreValid = false;
 				return;
 			}
-			if ($recipeStore.portions === null) {
-				allInputsAreValid = false;
-				return;
-			}
-
 			allInputsAreValid = true;
 			return;
 		})();

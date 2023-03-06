@@ -13,6 +13,7 @@
 	import { goto } from '$app/navigation';
 	import RecipeController from '$lib/controllers/RecipeController';
 	import { PROXY_ROUTES } from '$lib/types/Enums';
+	import { replaceSpecialChars } from '$lib/utils/replaceSpecialChars';
 
 	export let data: PageData;
 
@@ -23,22 +24,25 @@
 		RecipeController.proxy(PROXY_ROUTES.DELETE_RECIPE, data);
 		goto('/recipes');
 	}
+
+	console.log(typeof data.portions);
 </script>
 
 <Mobile>
-	<Button callback={() => console.log('Version')} text="Scale" icon={CaretDownOutlined} />
 	<Button callback={() => goto(`/recipes/modify/${data.id}`)} text="Modify" icon={EditTwoTone} />
 	<Button callback={deleteRecipe} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 
 <main>
 	<div class="recipe-name">
-		<h3 class="outline">recipes/{data.title.toLowerCase()}</h3>
-		<h1>{data.title}</h1>
+		<h3 class="outline">recipes/{replaceSpecialChars(data.title).toLowerCase()}</h3>
+		<h1>{replaceSpecialChars(data.title)}</h1>
 	</div>
 
 	<div class="stats">
-		<Tag tagName={`${data.portions} Portions`} />
+		{#if data.portions !== null}
+			<Tag tagName={`${data.portions} Portions`} />
+		{/if}
 		<Tag tagName={`${ingredients.length} Ingredients`} />
 		<Tag tagName={`${directions.length} Steps`} />
 	</div>
