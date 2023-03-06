@@ -38,14 +38,14 @@
 
 	.text {
 		margin-right: 9px;
-		font-size: 12px;
+		font-size: var(--md);
 		color: var(--contrast);
 	}
 
 	.icon {
-		height: 11px;
-		width: 11px;
-		min-width: 11px;
-		min-height: 11px;
+		height: 12px;
+		width: 12px;
+		min-width: 12px;
+		min-height: 12px;
 	}
 </style>

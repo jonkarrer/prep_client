@@ -96,6 +96,7 @@
 	menu li {
 		margin-left: 10px;
 		margin-top: 15px;
+		font-size: var(--md);
 	}
 	menu li:first-child {
 		margin-top: 0;
@@ -108,7 +109,7 @@
 		padding: 7px 9px;
 		width: 155px;
 
-		font-size: var(--sm);
+		font-size: var(--md);
 		color: var(--contrast);
 
 		border-radius: var(--border-radius);
@@ -120,7 +121,6 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
-		font-size: var(--sm);
 	}
 
 	.text {
