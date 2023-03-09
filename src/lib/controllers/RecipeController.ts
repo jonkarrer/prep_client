@@ -6,7 +6,7 @@ export default class RecipeController {
 	constructor(private authToken: string | undefined = undefined) {}
 
 	async getAllForUser(): Promise<Array<Recipe>> {
-		const request = new Request('http://127.0.0.1/api/recipes', {
+		const request = new Request('http://127.0.0.1:8080/api/recipes', {
 			method: 'GET',
 			headers: {
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -19,7 +19,7 @@ export default class RecipeController {
 	}
 
 	async getSingle(recipeId: string): Promise<Recipe> {
-		const request = new Request('http://127.0.0.1/api/recipes/single/' + recipeId, {
+		const request = new Request('http://127.0.0.1:8080/api/recipes/single/' + recipeId, {
 			method: 'GET',
 			headers: {
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -33,7 +33,7 @@ export default class RecipeController {
 
 	async create(recipeData: Recipe) {
 		// Send auth token and data to api
-		const request = new Request('http://127.0.0.1/api/recipes/create', {
+		const request = new Request('http://127.0.0.1:8080/api/recipes/create', {
 			method: 'POST',
 			headers: new Headers({
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -47,7 +47,7 @@ export default class RecipeController {
 	}
 
 	async modify(recipeData: Recipe) {
-		const request = new Request(`http://127.0.0.1/api/recipes/modify/${recipeData.id}`, {
+		const request = new Request(`http://127.0.0.1:8080/api/recipes/modify/${recipeData.id}`, {
 			method: 'PUT',
 			headers: new Headers({
 				'Content-Type': CONTENT_TYPE.JSON,
@@ -61,7 +61,7 @@ export default class RecipeController {
 	}
 
 	async delete(recipeData: Recipe) {
-		const request = new Request(`http://127.0.0.1/api/recipes/delete/${recipeData.id}`, {
+		const request = new Request(`http://127.0.0.1:8080/api/recipes/delete/${recipeData.id}`, {
 			method: 'DELETE',
 			headers: new Headers({
 				'Content-Type': CONTENT_TYPE.JSON,

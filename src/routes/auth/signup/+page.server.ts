@@ -14,7 +14,7 @@ export const actions: Actions = {
 
 		// TODO Clean this up with the send util
 		// Send signup request
-		const query = await fetch('http://127.0.0.1/api/user/signup', {
+		const query = await fetch('http://127.0.0.1:8080/api/user/signup', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
