@@ -9,7 +9,10 @@ export default async function Send(request: Request) {
 		const data = await parse(res);
 		return data;
 	} catch (err: any) {
-		err.log();
+		if (err.log()) {
+			return err.log();
+		}
+		console.log('error', err);
 	}
 
 	async function parse(response: Response) {

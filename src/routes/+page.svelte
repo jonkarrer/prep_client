@@ -1,6 +1,6 @@
 <script>
 	(async () => {
-		const req = await fetch('http://127.0.0.1:8080/api');
+		const req = await fetch(import.meta.env.VITE_API_ENDPOINT + '/api');
 		console.log(await req.text());
 	})();
 </script>
