@@ -61,7 +61,7 @@
 			</li>
 			<button class="user_profile group">
 				<div class="icon"><UserOutlined /></div>
-				<a href="/user" class="text">User Profile</a>
+				<div class="text">User Profile</div>
 			</button>
 		</nav>
 	{/if}

@@ -12,5 +12,6 @@ export enum SESSION {
 export enum PROXY_ROUTES {
 	CREATE_RECIPE = '/proxy/recipes/create',
 	MODIFY_RECIPE = '/proxy/recipes/modify',
-	DELETE_RECIPE = '/proxy/recipes/delete'
+	DELETE_RECIPE = '/proxy/recipes/delete',
+	LOGOUT_USER = '/proxy/logout'
 }

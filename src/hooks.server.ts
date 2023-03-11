@@ -6,7 +6,7 @@ export const handle = (async ({ event, resolve }) => {
 	if (!event.route.id?.includes('auth')) {
 		const authToken = event.cookies.get(SESSION.TOKEN);
 		if (!authToken || authToken?.length === 0) {
-			console.log('No Auth', authToken);
+			console.log('No Auth Hook');
 			throw redirect(302, '/auth/login');
 		}
 	}

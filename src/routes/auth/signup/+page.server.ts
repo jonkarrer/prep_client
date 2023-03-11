@@ -33,7 +33,6 @@ export const actions: Actions = {
 		// Parse query from api
 		const response: LoginResponse = await query.json();
 		const token: string = response.data.token;
-		console.log('Login Response', response, email, password);
 
 		cookies.delete(SESSION.TOKEN, { path: '/' });
 		// Set user's _id into the cookie

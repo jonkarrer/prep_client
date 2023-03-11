@@ -4,7 +4,8 @@ export default async function Send(request: Request) {
 	try {
 		const res = await fetch(request);
 		if (!res.ok) {
-			throw new ResponseError('Bad Fetch Response', res);
+			let parsedError = await parse(res);
+			throw new ResponseError('Bad Fetch Response', parsedError);
 		}
 		const data = await parse(res);
 		return data;

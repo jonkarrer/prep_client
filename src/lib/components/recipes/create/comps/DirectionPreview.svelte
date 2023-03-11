@@ -31,9 +31,6 @@
 	}
 
 	function cancelChanges() {
-		console.log('array', $recipe[RecipeKeys.DIRECTIONS]);
-		console.log('order, direction', order, direction);
-
 		directionValueBinding = direction;
 		isActive = false;
 	}

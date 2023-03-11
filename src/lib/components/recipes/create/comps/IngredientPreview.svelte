@@ -72,8 +72,6 @@
 	}
 
 	function cancelChanges() {
-		console.log('array', $recipe[RecipeKeys.INGREDIENTS]);
-
 		quantityInputValue = quantity;
 		unitInputValue = unit;
 		nameInputValue = name;

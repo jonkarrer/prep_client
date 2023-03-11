@@ -11,7 +11,7 @@ export const actions: Actions = {
 		const password = formData.get('password');
 
 		// Send verification request
-		const query = await fetch(import.meta.env.VITE_API_ENDPOINT + '/api/user/login', {
+		const query = await fetch('http://127.0.0.1/api/user/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -29,7 +29,6 @@ export const actions: Actions = {
 		// Parse query from api
 		const response: LoginResponse = await query.json();
 		const token: string = response.data.token;
-		console.log('Login Response', response, email, password);
 
 		cookies.delete(SESSION.TOKEN, { path: '/' });
 		// Set user's _id into the cookie
