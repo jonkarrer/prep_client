@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Mobile from '$lib/components/headers/Mobile.svelte';
 	import Button from '$lib/components/common/Button.svelte';
-	import Search from '$lib/components/common/Search.svelte';
 	import Tag from '$lib/components/common/Tag.svelte';
 	import PlusOutlined from '$lib/assets/icons/PlusOutlined.svelte';
-	import CaretDownOutlined from '$lib/assets/icons/CaretDownOutlined.svelte';
 	import type { PageData } from './$types';
 	import Paper from '$lib/components/common/Paper.svelte';
 	import type { Recipe } from '$lib/types/Recipe';
@@ -37,26 +35,42 @@
 </Mobile>
 
 <main>
-	<Paper>
-		{#each recipes as recipe, i}
-			<button on:click={() => goto('/recipes/view/' + recipe.id)}>
-				<div class="heading">
-					<h1>{replaceSpecialChars(recipe.title)}</h1>
-					<ModifyTools
-						deleteCallback={() => deleteRecipe(recipe, i)}
-						editCallback={() => modifyRecipe(recipe.id)}
-					/>
-				</div>
-				<div class="tags">
-					{#if recipe.portions !== null}
-						<Tag tagName={`${recipe.portions} Portions`} />
-					{/if}
-					<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
-					<Tag tagName={`${recipe.directions.length} Steps`} />
-				</div>
-			</button>
-		{/each}
-	</Paper>
+	{#if recipes.length === 0}
+		<section class="no_recipes">
+			<h2>
+				You don't have any recipes, <br />let's make
+				<span style:color="var(--accent)">one.</span>
+			</h2>
+			<Button
+				text="Create A Recipe"
+				icon={PlusOutlined}
+				toggle={false}
+				callback={() => goto('/recipes/create')}
+			/>
+		</section>
+	{/if}
+	{#if recipes.length}
+		<Paper>
+			{#each recipes as recipe, i}
+				<button on:click={() => goto('/recipes/view/' + recipe.id)}>
+					<div class="heading">
+						<h1>{replaceSpecialChars(recipe.title)}</h1>
+						<ModifyTools
+							deleteCallback={() => deleteRecipe(recipe, i)}
+							editCallback={() => modifyRecipe(recipe.id)}
+						/>
+					</div>
+					<div class="tags">
+						{#if recipe.portions !== null}
+							<Tag tagName={`${recipe.portions} Portions`} />
+						{/if}
+						<Tag tagName={`${recipe.ingredients.length} Ingredients`} />
+						<Tag tagName={`${recipe.directions.length} Steps`} />
+					</div>
+				</button>
+			{/each}
+		</Paper>
+	{/if}
 </main>
 
 <style>
@@ -89,5 +103,9 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
+	}
+
+	.no_recipes h2 {
+		margin-bottom: 20px;
 	}
 </style>
