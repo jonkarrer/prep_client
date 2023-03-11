@@ -22,6 +22,8 @@
 		place-content: center;
 		height: 100vh;
 		background: var(--primary);
+		max-width: 340px;
+		margin: auto;
 	}
 	form {
 		max-width: 375px;

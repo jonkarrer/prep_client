@@ -11,7 +11,7 @@
 		<button type="submit" form="login">Login</button>
 	</form>
 
-	<a class="register" href="/auth/signup">Need to register?</a>
+	<!-- <a class="register" href="/auth/signup">Need to register?</a> -->
 </main>
 
 <style>
@@ -20,6 +20,8 @@
 		place-content: center;
 		height: 100vh;
 		background: var(--primary);
+		max-width: 340px;
+		margin: auto;
 	}
 	form {
 		max-width: 375px;
