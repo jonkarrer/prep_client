@@ -6,7 +6,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	// Get user id from SESSION
 	const authToken = cookies.get(SESSION.TOKEN);
 
-	// TODO Hanlde errors and redirects
 	// Fetch all recipes
 	const data = await new RecipeController(authToken).getAllForUser();
 

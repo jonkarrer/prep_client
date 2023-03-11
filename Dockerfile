@@ -4,6 +4,8 @@ COPY . /app
 
 WORKDIR /app
 
+ENV VITE_API_ENDPOINT=https://prep-api.onrender.com
+
 RUN npm install \
     && npm run build
 
