@@ -18,5 +18,6 @@
 <style>
 	input {
 		font-size: var(--xl);
+		color: var(--contrast);
 	}
 </style>

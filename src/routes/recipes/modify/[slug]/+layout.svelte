@@ -12,6 +12,7 @@
 	import type { PageData } from './$types';
 	import RecipeController from '$lib/controllers/RecipeController';
 	import { PROXY_ROUTES } from '$lib/types/Enums';
+	import DeleteTwoTone from '$lib/assets/icons/DeleteTwoTone.svelte';
 
 	export let data: PageData;
 
@@ -92,7 +93,7 @@
 		text="Cancel"
 		icon={ReloadOutlined}
 	/>
-	<Button callback={deleteRecipe} text="Delete" icon={BlocksOutlined} />
+	<Button callback={deleteRecipe} text="Delete" icon={DeleteTwoTone} />
 </Mobile>
 
 <slot />

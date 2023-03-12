@@ -100,7 +100,6 @@
 <Mobile>
 	<Button toggle={allInputsAreValid} callback={saveRecipe} text="Save" icon={SaveTwoTone} />
 	<Button callback={resetAllValues} text="Reset" icon={ReloadOutlined} />
-	<Button callback={saveDraft} text="Draft" icon={BlocksOutlined} />
 </Mobile>
 
 <slot />
