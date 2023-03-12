@@ -14,6 +14,7 @@
 <style>
 	.text {
 		text-align: left;
+		color: var(--contrast);
 	}
 	strong {
 		font-weight: 600;

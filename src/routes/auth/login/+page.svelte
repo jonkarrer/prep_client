@@ -54,12 +54,12 @@
 		cursor: pointer;
 	}
 
-	.register {
+	/* .register {
 		display: block;
 		font-size: var(--f-sm);
 		margin-top: 40px;
 		text-align: center;
 		color: var(--contrast);
 		text-decoration: underline;
-	}
+	} */
 </style>
