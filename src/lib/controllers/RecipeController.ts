@@ -5,7 +5,7 @@ import { CONTENT_TYPE, PROXY_ROUTES } from '$lib/types/Enums';
 export default class RecipeController {
 	constructor(private authToken: string | undefined = undefined) {}
 
-	async getAllForUser(): Promise<Array<Recipe>> {
+	async getAllRecipes(): Promise<Array<Recipe>> {
 		const request = new Request(import.meta.env.VITE_API_ENDPOINT + '/api/recipes', {
 			method: 'GET',
 			headers: {
@@ -18,7 +18,7 @@ export default class RecipeController {
 		return data;
 	}
 
-	async getSingle(recipeId: string): Promise<Recipe> {
+	async getSingleRecipe(recipeId: string): Promise<Recipe> {
 		const request = new Request(
 			import.meta.env.VITE_API_ENDPOINT + '/api/recipes/single/' + recipeId,
 			{

@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies }) => {
 	const authToken = cookies.get(SESSION.TOKEN);
 
 	// TODO Hanlde errors and redirects
-	const getSingle: Recipe = await new RecipeController(authToken).getSingle(recipeId);
+	const getSingleRecipe: Recipe = await new RecipeController(authToken).getSingleRecipe(recipeId);
 
-	return getSingle;
+	return getSingleRecipe;
 };

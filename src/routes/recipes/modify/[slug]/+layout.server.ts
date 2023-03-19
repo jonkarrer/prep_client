@@ -10,13 +10,13 @@ export const load: LayoutServerLoad = async ({ fetch, params, cookies }) => {
 	const recipeId = params.slug;
 	const authToken = cookies.get(SESSION.TOKEN);
 
-	const singleRecipe: Recipe = await new RecipeController(authToken).getSingle(recipeId);
+	const recipe: Recipe = await new RecipeController(authToken).getSingleRecipe(recipeId);
 
 	// Format Text from DB
-	singleRecipe.title = replaceSpecialChars(singleRecipe.title);
-	singleRecipe.ingredients.map((item: Ingredient) => (item.name = replaceSpecialChars(item.name)));
-	singleRecipe.directions = singleRecipe.directions.map((item: string) =>
+	recipe.title = replaceSpecialChars(recipe.title);
+	recipe.ingredients.map((item: Ingredient) => (item.name = replaceSpecialChars(item.name)));
+	recipe.directions = recipe.directions.map((item: string) =>
 		replaceSpecialChars(item)
 	);
-	return singleRecipe;
+	return recipe;
 };

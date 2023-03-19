@@ -11,7 +11,7 @@
 		<button type="submit" form="login">Login</button>
 	</form>
 
-	<!-- <a class="register" href="/auth/signup">Need to register?</a> -->
+	<a class="register" href="/auth/signup">Need to register?</a>
 </main>
 
 <style>
@@ -54,12 +54,12 @@
 		cursor: pointer;
 	}
 
-	/* .register {
+	.register {
 		display: block;
 		font-size: var(--f-sm);
 		margin-top: 40px;
 		text-align: center;
 		color: var(--contrast);
 		text-decoration: underline;
-	} */
+	}
 </style>

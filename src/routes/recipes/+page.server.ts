@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const authToken = cookies.get(SESSION.TOKEN);
 
 	// Fetch all recipes
-	const data = await new RecipeController(authToken).getAllForUser();
+	const data = await new RecipeController(authToken).getAllRecipes();
 
 	return { recipes: data };
 };
