@@ -2,6 +2,7 @@ import type { LoginResponse } from '$lib/types/User';
 import { SESSION } from '$lib/types/Enums';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
+import Send from '$lib/helpers/Send';
 
 export const actions: Actions = {
 	default: async ({ cookies, request, fetch }) => {
@@ -10,8 +11,7 @@ export const actions: Actions = {
 		const email = formData.get('email');
 		const password = formData.get('password');
 
-		// Send verification request
-		const query = await fetch(import.meta.env.VITE_API_ENDPOINT + '/api/user/login', {
+		const loginRequest = new Request(import.meta.env.VITE_API_ENDPOINT + '/api/user/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -22,12 +22,9 @@ export const actions: Actions = {
 			})
 		});
 
-		if (!query.ok) {
-			return fail(401, { message: query.status });
-		}
+		const response = await Send(loginRequest);
 
 		// Parse query from api
-		const response: LoginResponse = await query.json();
 		const token: string = response.data.token;
 
 		cookies.delete(SESSION.TOKEN, { path: '/' });
